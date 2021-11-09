@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FA5C6AE650C9D36C4F74E2B /* Pods_QuizButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B774D7D11B179A3BBE6FFBCB /* Pods_QuizButton.framework */; };
+		32BBAA4E25DAAAC67BF5FA58 /* Pods_QuizButtonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB141F49796E996BFA36D94 /* Pods_QuizButtonTests.framework */; };
+		45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE34273AA8820051DA7E /* Home.storyboard */; };
+		45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE36273AA8A10051DA7E /* HomeViewController.swift */; };
+		45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE38273AABE30051DA7E /* HomeViewModel.swift */; };
 		45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06A273AA69300361BDD /* AppDelegate.swift */; };
 		45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06C273AA69300361BDD /* SceneDelegate.swift */; };
-		45DEB06F273AA69300361BDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06E273AA69300361BDD /* ViewController.swift */; };
-		45DEB072273AA69400361BDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB070273AA69400361BDD /* Main.storyboard */; };
 		45DEB074273AA69500361BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB073273AA69500361BDD /* Assets.xcassets */; };
 		45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB075273AA69500361BDD /* LaunchScreen.storyboard */; };
 		45DEB082273AA69600361BDD /* QuizButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB081273AA69600361BDD /* QuizButtonTests.swift */; };
 		45DEB08C273AA69600361BDD /* QuizButtonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB08B273AA69600361BDD /* QuizButtonUITests.swift */; };
 		45DEB08E273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB08D273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift */; };
+		B38EF0A08C7681CE0E8D0262 /* Pods_QuizButton_QuizButtonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5479E3A993C534DB259BA021 /* Pods_QuizButton_QuizButtonUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButtonTests.release.xcconfig"; path = "Target Support Files/Pods-QuizButtonTests/Pods-QuizButtonTests.release.xcconfig"; sourceTree = "<group>"; };
+		34562B8C1CBFB560EF3CDE33 /* Pods-QuizButton-QuizButtonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton-QuizButtonUITests.release.xcconfig"; path = "Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests.release.xcconfig"; sourceTree = "<group>"; };
+		45A9DE34273AA8820051DA7E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		45A9DE36273AA8A10051DA7E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		45A9DE38273AABE30051DA7E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		45DEB067273AA69300361BDD /* QuizButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEB06A273AA69300361BDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DEB06C273AA69300361BDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45DEB06E273AA69300361BDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		45DEB071273AA69400361BDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45DEB073273AA69500361BDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45DEB076273AA69500361BDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45DEB078273AA69500361BDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +56,13 @@
 		45DEB087273AA69600361BDD /* QuizButtonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizButtonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEB08B273AA69600361BDD /* QuizButtonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButtonUITests.swift; sourceTree = "<group>"; };
 		45DEB08D273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButtonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4763ACE522B61E9459BF8316 /* Pods-QuizButtonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButtonTests.debug.xcconfig"; path = "Target Support Files/Pods-QuizButtonTests/Pods-QuizButtonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5479E3A993C534DB259BA021 /* Pods_QuizButton_QuizButtonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizButton_QuizButtonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C5BE4E9C58DA4F5A9FA100 /* Pods-QuizButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton.debug.xcconfig"; path = "Target Support Files/Pods-QuizButton/Pods-QuizButton.debug.xcconfig"; sourceTree = "<group>"; };
+		774610C69D0B7F5AAD86BFBD /* Pods-QuizButton-QuizButtonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton-QuizButtonUITests.debug.xcconfig"; path = "Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B65BF513DB27A968B1368E78 /* Pods-QuizButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton.release.xcconfig"; path = "Target Support Files/Pods-QuizButton/Pods-QuizButton.release.xcconfig"; sourceTree = "<group>"; };
+		B774D7D11B179A3BBE6FFBCB /* Pods_QuizButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB141F49796E996BFA36D94 /* Pods_QuizButtonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizButtonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA5C6AE650C9D36C4F74E2B /* Pods_QuizButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32BBAA4E25DAAAC67BF5FA58 /* Pods_QuizButtonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +86,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B38EF0A08C7681CE0E8D0262 /* Pods_QuizButton_QuizButtonUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1700408375A634A8716C2FD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63C5BE4E9C58DA4F5A9FA100 /* Pods-QuizButton.debug.xcconfig */,
+				B65BF513DB27A968B1368E78 /* Pods-QuizButton.release.xcconfig */,
+				774610C69D0B7F5AAD86BFBD /* Pods-QuizButton-QuizButtonUITests.debug.xcconfig */,
+				34562B8C1CBFB560EF3CDE33 /* Pods-QuizButton-QuizButtonUITests.release.xcconfig */,
+				4763ACE522B61E9459BF8316 /* Pods-QuizButtonTests.debug.xcconfig */,
+				241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		45A9DE33273AA7C50051DA7E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				45A9DE34273AA8820051DA7E /* Home.storyboard */,
+				45A9DE36273AA8A10051DA7E /* HomeViewController.swift */,
+				45A9DE38273AABE30051DA7E /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		45DEB05E273AA69300361BDD = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +124,8 @@
 				45DEB080273AA69600361BDD /* QuizButtonTests */,
 				45DEB08A273AA69600361BDD /* QuizButtonUITests */,
 				45DEB068273AA69300361BDD /* Products */,
+				1700408375A634A8716C2FD8 /* Pods */,
+				49A630A0C559030052481E48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +142,9 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				45A9DE33273AA7C50051DA7E /* Home */,
 				45DEB06A273AA69300361BDD /* AppDelegate.swift */,
 				45DEB06C273AA69300361BDD /* SceneDelegate.swift */,
-				45DEB06E273AA69300361BDD /* ViewController.swift */,
-				45DEB070273AA69400361BDD /* Main.storyboard */,
 				45DEB073273AA69500361BDD /* Assets.xcassets */,
 				45DEB075273AA69500361BDD /* LaunchScreen.storyboard */,
 				45DEB078273AA69500361BDD /* Info.plist */,
@@ -127,6 +169,16 @@
 			path = QuizButtonUITests;
 			sourceTree = "<group>";
 		};
+		49A630A0C559030052481E48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B774D7D11B179A3BBE6FFBCB /* Pods_QuizButton.framework */,
+				5479E3A993C534DB259BA021 /* Pods_QuizButton_QuizButtonUITests.framework */,
+				DEB141F49796E996BFA36D94 /* Pods_QuizButtonTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DEB091273AA69600361BDD /* Build configuration list for PBXNativeTarget "QuizButton" */;
 			buildPhases = (
+				72AD961AFA03CBA4319C8327 /* [CP] Check Pods Manifest.lock */,
 				45DEB063273AA69300361BDD /* Sources */,
 				45DEB064273AA69300361BDD /* Frameworks */,
 				45DEB065273AA69300361BDD /* Resources */,
+				EC71B704444B75F7CA4BAE90 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +205,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DEB094273AA69600361BDD /* Build configuration list for PBXNativeTarget "QuizButtonTests" */;
 			buildPhases = (
+				2AF66A747428A07487494E0B /* [CP] Check Pods Manifest.lock */,
 				45DEB079273AA69600361BDD /* Sources */,
 				45DEB07A273AA69600361BDD /* Frameworks */,
 				45DEB07B273AA69600361BDD /* Resources */,
@@ -169,9 +224,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45DEB097273AA69600361BDD /* Build configuration list for PBXNativeTarget "QuizButtonUITests" */;
 			buildPhases = (
+				9F3364E3620C2F827DF5A74C /* [CP] Check Pods Manifest.lock */,
 				45DEB083273AA69600361BDD /* Sources */,
 				45DEB084273AA69600361BDD /* Frameworks */,
 				45DEB085273AA69600361BDD /* Resources */,
+				319BAFF70B36128DB4057C6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,7 +290,7 @@
 			files = (
 				45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */,
 				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
-				45DEB072273AA69400361BDD /* Main.storyboard in Resources */,
+				45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +310,118 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2AF66A747428A07487494E0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuizButtonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		319BAFF70B36128DB4057C6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72AD961AFA03CBA4319C8327 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuizButton-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F3364E3620C2F827DF5A74C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QuizButton-QuizButtonUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC71B704444B75F7CA4BAE90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizButton/Pods-QuizButton-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizButton/Pods-QuizButton-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuizButton/Pods-QuizButton-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		45DEB063273AA69300361BDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45DEB06F273AA69300361BDD /* ViewController.swift in Sources */,
 				45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */,
 				45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */,
+				45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */,
+				45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +458,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		45DEB070273AA69400361BDD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				45DEB071273AA69400361BDD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		45DEB075273AA69500361BDD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -434,6 +587,7 @@
 		};
 		45DEB092273AA69600361BDD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C5BE4E9C58DA4F5A9FA100 /* Pods-QuizButton.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -444,7 +598,6 @@
 				INFOPLIST_FILE = QuizButton/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,6 +615,7 @@
 		};
 		45DEB093273AA69600361BDD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B65BF513DB27A968B1368E78 /* Pods-QuizButton.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -472,7 +626,6 @@
 				INFOPLIST_FILE = QuizButton/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -490,6 +643,7 @@
 		};
 		45DEB095273AA69600361BDD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4763ACE522B61E9459BF8316 /* Pods-QuizButtonTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +669,7 @@
 		};
 		45DEB096273AA69600361BDD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -540,6 +695,7 @@
 		};
 		45DEB098273AA69600361BDD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 774610C69D0B7F5AAD86BFBD /* Pods-QuizButton-QuizButtonUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -563,6 +719,7 @@
 		};
 		45DEB099273AA69600361BDD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34562B8C1CBFB560EF3CDE33 /* Pods-QuizButton-QuizButtonUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
