@@ -12,6 +12,12 @@
 		45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE34273AA8820051DA7E /* Home.storyboard */; };
 		45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE36273AA8A10051DA7E /* HomeViewController.swift */; };
 		45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE38273AABE30051DA7E /* HomeViewModel.swift */; };
+		45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */; };
+		45A9DE3D273ABC320051DA7E /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE3C273ABC320051DA7E /* HomeWireframe.swift */; };
+		45A9DE40273ABDE70051DA7E /* Standby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE3F273ABDE70051DA7E /* Standby.storyboard */; };
+		45A9DE42273ABDF50051DA7E /* StandbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */; };
+		45A9DE45273ABE160051DA7E /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE44273ABE160051DA7E /* Entrance.storyboard */; };
+		45A9DE47273ABE220051DA7E /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE46273ABE210051DA7E /* EntranceViewController.swift */; };
 		45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06A273AA69300361BDD /* AppDelegate.swift */; };
 		45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06C273AA69300361BDD /* SceneDelegate.swift */; };
 		45DEB074273AA69500361BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB073273AA69500361BDD /* Assets.xcassets */; };
@@ -45,6 +51,12 @@
 		45A9DE34273AA8820051DA7E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		45A9DE36273AA8A10051DA7E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		45A9DE38273AABE30051DA7E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
+		45A9DE3C273ABC320051DA7E /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		45A9DE3F273ABDE70051DA7E /* Standby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standby.storyboard; sourceTree = "<group>"; };
+		45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewController.swift; sourceTree = "<group>"; };
+		45A9DE44273ABE160051DA7E /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
+		45A9DE46273ABE210051DA7E /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
 		45DEB067273AA69300361BDD /* QuizButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEB06A273AA69300361BDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DEB06C273AA69300361BDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +115,6 @@
 				4763ACE522B61E9459BF8316 /* Pods-QuizButtonTests.debug.xcconfig */,
 				241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -113,8 +124,27 @@
 				45A9DE34273AA8820051DA7E /* Home.storyboard */,
 				45A9DE36273AA8A10051DA7E /* HomeViewController.swift */,
 				45A9DE38273AABE30051DA7E /* HomeViewModel.swift */,
+				45A9DE3C273ABC320051DA7E /* HomeWireframe.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		45A9DE3E273ABD900051DA7E /* Standby */ = {
+			isa = PBXGroup;
+			children = (
+				45A9DE3F273ABDE70051DA7E /* Standby.storyboard */,
+				45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */,
+			);
+			path = Standby;
+			sourceTree = "<group>";
+		};
+		45A9DE43273ABE060051DA7E /* Entrance */ = {
+			isa = PBXGroup;
+			children = (
+				45A9DE44273ABE160051DA7E /* Entrance.storyboard */,
+				45A9DE46273ABE210051DA7E /* EntranceViewController.swift */,
+			);
+			path = Entrance;
 			sourceTree = "<group>";
 		};
 		45DEB05E273AA69300361BDD = {
@@ -142,12 +172,15 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				45A9DE43273ABE060051DA7E /* Entrance */,
+				45A9DE3E273ABD900051DA7E /* Standby */,
 				45A9DE33273AA7C50051DA7E /* Home */,
 				45DEB06A273AA69300361BDD /* AppDelegate.swift */,
 				45DEB06C273AA69300361BDD /* SceneDelegate.swift */,
 				45DEB073273AA69500361BDD /* Assets.xcassets */,
 				45DEB075273AA69500361BDD /* LaunchScreen.storyboard */,
 				45DEB078273AA69500361BDD /* Info.plist */,
+				45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */,
 			);
 			path = QuizButton;
 			sourceTree = "<group>";
@@ -288,8 +321,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A9DE45273ABE160051DA7E /* Entrance.storyboard in Resources */,
 				45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */,
 				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
+				45A9DE40273ABDE70051DA7E /* Standby.storyboard in Resources */,
 				45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,10 +453,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A9DE42273ABDF50051DA7E /* StandbyViewController.swift in Sources */,
+				45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */,
 				45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */,
 				45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */,
 				45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */,
 				45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */,
+				45A9DE47273ABE220051DA7E /* EntranceViewController.swift in Sources */,
+				45A9DE3D273ABC320051DA7E /* HomeWireframe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

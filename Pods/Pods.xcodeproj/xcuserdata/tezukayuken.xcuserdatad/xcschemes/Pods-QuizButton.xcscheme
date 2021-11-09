@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1913CC998E290398390C343E06B76BFC"
-               BuildableName = "Pods-QuizButton.framework"
+               BuildableName = "Pods_QuizButton.framework"
                BlueprintName = "Pods-QuizButton"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
