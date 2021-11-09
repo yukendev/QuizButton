@@ -1,0 +1,6 @@
+framework module Pods_QuizButton_QuizButtonUITests {
+  umbrella header "Pods-QuizButton-QuizButtonUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
