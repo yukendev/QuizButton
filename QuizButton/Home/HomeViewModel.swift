@@ -22,11 +22,10 @@ class HomeViewModel {
     init(input: Input, wireframe: HomeWireframe) {
         
         input.createRoomButtonTap.emit(onNext: {
-            print("部屋を作る")
             wireframe.toStandbyVC()
         }).disposed(by: disposeBag)
+        
         input.searchRoomButtonTap.emit(onNext: {
-            print("部屋を探す")
             wireframe.toEntranceVC()
         }).disposed(by: disposeBag)
         

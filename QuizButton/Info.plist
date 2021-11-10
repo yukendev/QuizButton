@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_QuizButton._tcp</string>
+		<string>_QuizButton._udp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>早押しボタンの機能を使うために近くの人との通信が必要だから</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
