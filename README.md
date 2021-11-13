@@ -16,7 +16,7 @@ Hi, welcome to this repository.
 
 ## Author
 - Yuken Tezuka
-- kochinkochinko@gmail.com
+- yuken0906dev@gmail.com
 
 ## Licence
 This project is under MIT licence
