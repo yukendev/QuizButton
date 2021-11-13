@@ -17,6 +17,7 @@ class EntranceViewModel {
         
         sendButtonTap.emit(onNext: {
             print("送信ボタンがタップされました")
+            print("テスト")
         }).disposed(by: disposeBag)
     }
 }
