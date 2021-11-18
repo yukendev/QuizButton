@@ -18,6 +18,7 @@ class EntranceViewModel: NSObject {
     private var session: MCSession!
     private var advertiser: MCNearbyServiceAdvertiser!
     private var browser: MCNearbyServiceBrowser!
+    private let peerID = MCPeerID(displayName: UIDevice.current.name)
     
     private let roomNumberValidationRelay = PublishRelay<Bool>()
     let isAppropriateRoomNumber: Signal<Bool>
@@ -29,7 +30,6 @@ class EntranceViewModel: NSObject {
         
         super.init()
         
-        let peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID)
         session.delegate = self
         
@@ -45,6 +45,10 @@ class EntranceViewModel: NSObject {
             if self.isAppropriateRoomNumber(self.roomNumberText.value) {
                 // Wireframeで画面遷移
                 self.roomNumberValidationRelay.accept(true)
+                guard let roomNumber = Int(self.roomNumberText.value) else {
+                    return
+                }
+                self.sendRoomNumber(roomNumber)
             } else {
                 // VCでアラートを表示
                 self.roomNumberValidationRelay.accept(false)
@@ -52,6 +56,7 @@ class EntranceViewModel: NSObject {
         }).disposed(by: disposeBag)
     }
     
+    // 部屋番号のバリデーション
     private func isAppropriateRoomNumber(_ roomNumberText: String) -> Bool {
         guard let roomNumber: Int = Int(roomNumberText) else {
             return false
@@ -60,6 +65,18 @@ class EntranceViewModel: NSObject {
             return true
         } else {
             return false
+        }
+    }
+    
+    // 部屋番号の送信
+    private func sendRoomNumber(_ roomNumber: Int) {
+        let request = RoomNumberRequest(id: self.peerID.displayName, roomNumber: roomNumber, requestType: RequestType.request)
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(request)
+            try session.send(jsonData, toPeers: session.connectedPeers, with: .reliable)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
@@ -81,7 +98,21 @@ extension EntranceViewModel: MCSessionDelegate {
     
     // Data型を受け取った時
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("\(peerID.displayName)からデータが送信されました")
+        let decoder = JSONDecoder()
+        do {
+            let response = try decoder.decode(RoomNumberRequest.self, from: data)
+            print("from: \(response.id)\nroomNumber: \(response.roomNumber)\nrequestType: \(response.requestType)")
+            switch RequestType(rawValue: response.requestType) {
+            case .approval:
+                print("approval")
+            case .reject:
+                print("reject")
+            default:
+                print("default")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
