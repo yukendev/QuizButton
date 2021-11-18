@@ -19,7 +19,13 @@ class EntranceViewModel: NSObject {
     private var advertiser: MCNearbyServiceAdvertiser!
     private var browser: MCNearbyServiceBrowser!
     
+    private let roomNumberValidationRelay = PublishRelay<Bool>()
+    let isAppropriateRoomNumber: Signal<Bool>
+    var roomNumberText = BehaviorRelay<String>(value: "")
+    
     init(sendButtonTap: Signal<Void>) {
+        
+        self.isAppropriateRoomNumber = roomNumberValidationRelay.asSignal()
         
         super.init()
         
@@ -35,9 +41,26 @@ class EntranceViewModel: NSObject {
         browser.delegate = self
         browser.startBrowsingForPeers()
         
-        sendButtonTap.emit(onNext: {
-            print("送信ボタンがタップされました")
+        sendButtonTap.emit(onNext: { _ in
+            if self.isAppropriateRoomNumber(self.roomNumberText.value) {
+                // Wireframeで画面遷移
+                self.roomNumberValidationRelay.accept(true)
+            } else {
+                // VCでアラートを表示
+                self.roomNumberValidationRelay.accept(false)
+            }
         }).disposed(by: disposeBag)
+    }
+    
+    private func isAppropriateRoomNumber(_ roomNumberText: String) -> Bool {
+        guard let roomNumber: Int = Int(roomNumberText) else {
+            return false
+        }
+        if 1000 <= roomNumber && roomNumber <= 9999 {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

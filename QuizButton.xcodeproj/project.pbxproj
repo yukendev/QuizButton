@@ -13,7 +13,7 @@
 		453AEA04273B5BD30093951A /* StandbyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA03273B5BD30093951A /* StandbyViewModel.swift */; };
 		453AEA06273B5C0D0093951A /* StandbyWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA05273B5C0C0093951A /* StandbyWireframe.swift */; };
 		453AEA08273B5C190093951A /* EntranceWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA07273B5C190093951A /* EntranceWireframe.swift */; };
-		4576EFB427400BEF008FC84A /* Utility in Resources */ = {isa = PBXBuildFile; fileRef = 4576EFB327400BEF008FC84A /* Utility */; };
+		457C20EE27461F470066C872 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C20ED27461F470066C872 /* AlertUtility.swift */; };
 		45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE34273AA8820051DA7E /* Home.storyboard */; };
 		45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE36273AA8A10051DA7E /* HomeViewController.swift */; };
 		45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE38273AABE30051DA7E /* HomeViewModel.swift */; };
@@ -57,7 +57,7 @@
 		453AEA03273B5BD30093951A /* StandbyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewModel.swift; sourceTree = "<group>"; };
 		453AEA05273B5C0C0093951A /* StandbyWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyWireframe.swift; sourceTree = "<group>"; };
 		453AEA07273B5C190093951A /* EntranceWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceWireframe.swift; sourceTree = "<group>"; };
-		4576EFB327400BEF008FC84A /* Utility */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utility; sourceTree = "<group>"; };
+		457C20ED27461F470066C872 /* AlertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		45A9DE34273AA8820051DA7E /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		45A9DE36273AA8A10051DA7E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		45A9DE38273AABE30051DA7E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -128,6 +128,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		457C20EC27461F300066C872 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				457C20ED27461F470066C872 /* AlertUtility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		45A9DE33273AA7C50051DA7E /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +194,7 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
-				4576EFB327400BEF008FC84A /* Utility */,
+				457C20EC27461F300066C872 /* Utility */,
 				45A9DE43273ABE060051DA7E /* Entrance */,
 				45A9DE3E273ABD900051DA7E /* Standby */,
 				45A9DE33273AA7C50051DA7E /* Home */,
@@ -339,7 +347,6 @@
 				45A9DE45273ABE160051DA7E /* Entrance.storyboard in Resources */,
 				45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */,
 				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
-				4576EFB427400BEF008FC84A /* Utility in Resources */,
 				45A9DE40273ABDE70051DA7E /* Standby.storyboard in Resources */,
 				45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */,
 			);
@@ -471,6 +478,7 @@
 			files = (
 				453AEA08273B5C190093951A /* EntranceWireframe.swift in Sources */,
 				453AEA02273B5BBD0093951A /* EntranceViewModel.swift in Sources */,
+				457C20EE27461F470066C872 /* AlertUtility.swift in Sources */,
 				45A9DE42273ABDF50051DA7E /* StandbyViewController.swift in Sources */,
 				45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */,
 				45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */,
