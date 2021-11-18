@@ -32,7 +32,7 @@ class EntranceViewController: UIViewController {
             if isAppropriateRoomNumber {
                 print("適切な部屋番号です")
             } else {
-                print("不適切な部屋番号です")
+                // TODO: バリデーションのアラート表示
                 AlertUtility.showSingleAlert(title: "不適切な部屋番号です", message: "", viewController: self) { _ in
                     self.roomNumberTextField.text = ""
                 }

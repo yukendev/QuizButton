@@ -56,11 +56,7 @@ class EntranceViewModel: NSObject {
         guard let roomNumber: Int = Int(roomNumberText) else {
             return false
         }
-        if 1000 <= roomNumber && roomNumber <= 9999 {
-            return true
-        } else {
-            return false
-        }
+        return 1000 <= roomNumber && roomNumber <= 9999
     }
 }
 
