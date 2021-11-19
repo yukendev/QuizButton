@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 class EntranceWireframe: Wireframe {
     
+    func toStandby() {
+        let storyboard = UIStoryboard(name: "Standby", bundle: nil)
+        let standbyVC = storyboard.instantiateInitialViewController()
+        guard let standbyVC = standbyVC else {
+            return
+        }
+        viewController?.navigationController?.pushViewController(standbyVC, animated: true)
+    }
 }

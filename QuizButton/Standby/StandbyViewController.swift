@@ -2,29 +2,28 @@
 //  StandbyViewController.swift
 //  QuizButton
 //
-//  Created by 手塚友健 on 2021/11/09.
+//  Created by 手塚友健 on 2021/11/19.
 //
 
 import UIKit
 
 class StandbyViewController: UIViewController {
-    
-    @IBOutlet weak var roomNumberLabel: UILabel!
-    
-    let roomNumber = Int.random(in: 1000..<9999)
-    
-    private var viewModel: StandbyViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 部屋番号をラベルに表示
-        roomNumberLabel.text = String(roomNumber)
-        
-        viewModel = StandbyViewModel(roomNumber: roomNumber)
 
+        // Do any additional setup after loading the view.
     }
     
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
-
-

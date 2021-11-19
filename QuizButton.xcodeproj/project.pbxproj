@@ -10,8 +10,8 @@
 		2FA5C6AE650C9D36C4F74E2B /* Pods_QuizButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B774D7D11B179A3BBE6FFBCB /* Pods_QuizButton.framework */; };
 		32BBAA4E25DAAAC67BF5FA58 /* Pods_QuizButtonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB141F49796E996BFA36D94 /* Pods_QuizButtonTests.framework */; };
 		453AEA02273B5BBD0093951A /* EntranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA01273B5BBD0093951A /* EntranceViewModel.swift */; };
-		453AEA04273B5BD30093951A /* StandbyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA03273B5BD30093951A /* StandbyViewModel.swift */; };
-		453AEA06273B5C0D0093951A /* StandbyWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA05273B5C0C0093951A /* StandbyWireframe.swift */; };
+		453AEA04273B5BD30093951A /* CreatingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA03273B5BD30093951A /* CreatingRoomViewModel.swift */; };
+		453AEA06273B5C0D0093951A /* CreatingRoomWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA05273B5C0C0093951A /* CreatingRoomWireframe.swift */; };
 		453AEA08273B5C190093951A /* EntranceWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA07273B5C190093951A /* EntranceWireframe.swift */; };
 		457C20EE27461F470066C872 /* AlertUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C20ED27461F470066C872 /* AlertUtility.swift */; };
 		457C20F1274635210066C872 /* RoomNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C20F0274635210066C872 /* RoomNumberRequest.swift */; };
@@ -20,10 +20,14 @@
 		45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE38273AABE30051DA7E /* HomeViewModel.swift */; };
 		45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */; };
 		45A9DE3D273ABC320051DA7E /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE3C273ABC320051DA7E /* HomeWireframe.swift */; };
-		45A9DE40273ABDE70051DA7E /* Standby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE3F273ABDE70051DA7E /* Standby.storyboard */; };
-		45A9DE42273ABDF50051DA7E /* StandbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */; };
+		45A9DE40273ABDE70051DA7E /* CreatingRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE3F273ABDE70051DA7E /* CreatingRoom.storyboard */; };
+		45A9DE42273ABDF50051DA7E /* CreatingRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE41273ABDF50051DA7E /* CreatingRoomViewController.swift */; };
 		45A9DE45273ABE160051DA7E /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE44273ABE160051DA7E /* Entrance.storyboard */; };
 		45A9DE47273ABE220051DA7E /* EntranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE46273ABE210051DA7E /* EntranceViewController.swift */; };
+		45C3E8EE27473A6D00FB9566 /* AlertWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3E8ED27473A6D00FB9566 /* AlertWireframe.swift */; };
+		45C3E8F127473C2100FB9566 /* Standby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C3E8F027473C2100FB9566 /* Standby.storyboard */; };
+		45C3E8F327473C2E00FB9566 /* StandbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3E8F227473C2E00FB9566 /* StandbyViewController.swift */; };
+		45C3E8F527473C3A00FB9566 /* StandbyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C3E8F427473C3A00FB9566 /* StandbyViewModel.swift */; };
 		45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06A273AA69300361BDD /* AppDelegate.swift */; };
 		45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06C273AA69300361BDD /* SceneDelegate.swift */; };
 		45DEB074273AA69500361BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB073273AA69500361BDD /* Assets.xcassets */; };
@@ -55,8 +59,8 @@
 		241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButtonTests.release.xcconfig"; path = "Target Support Files/Pods-QuizButtonTests/Pods-QuizButtonTests.release.xcconfig"; sourceTree = "<group>"; };
 		34562B8C1CBFB560EF3CDE33 /* Pods-QuizButton-QuizButtonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton-QuizButtonUITests.release.xcconfig"; path = "Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		453AEA01273B5BBD0093951A /* EntranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewModel.swift; sourceTree = "<group>"; };
-		453AEA03273B5BD30093951A /* StandbyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewModel.swift; sourceTree = "<group>"; };
-		453AEA05273B5C0C0093951A /* StandbyWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyWireframe.swift; sourceTree = "<group>"; };
+		453AEA03273B5BD30093951A /* CreatingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingRoomViewModel.swift; sourceTree = "<group>"; };
+		453AEA05273B5C0C0093951A /* CreatingRoomWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingRoomWireframe.swift; sourceTree = "<group>"; };
 		453AEA07273B5C190093951A /* EntranceWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceWireframe.swift; sourceTree = "<group>"; };
 		457C20ED27461F470066C872 /* AlertUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtility.swift; sourceTree = "<group>"; };
 		457C20F0274635210066C872 /* RoomNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNumberRequest.swift; sourceTree = "<group>"; };
@@ -65,10 +69,14 @@
 		45A9DE38273AABE30051DA7E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		45A9DE3C273ABC320051DA7E /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
-		45A9DE3F273ABDE70051DA7E /* Standby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standby.storyboard; sourceTree = "<group>"; };
-		45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewController.swift; sourceTree = "<group>"; };
+		45A9DE3F273ABDE70051DA7E /* CreatingRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreatingRoom.storyboard; sourceTree = "<group>"; };
+		45A9DE41273ABDF50051DA7E /* CreatingRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingRoomViewController.swift; sourceTree = "<group>"; };
 		45A9DE44273ABE160051DA7E /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		45A9DE46273ABE210051DA7E /* EntranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewController.swift; sourceTree = "<group>"; };
+		45C3E8ED27473A6D00FB9566 /* AlertWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWireframe.swift; sourceTree = "<group>"; };
+		45C3E8F027473C2100FB9566 /* Standby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standby.storyboard; sourceTree = "<group>"; };
+		45C3E8F227473C2E00FB9566 /* StandbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewController.swift; sourceTree = "<group>"; };
+		45C3E8F427473C3A00FB9566 /* StandbyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyViewModel.swift; sourceTree = "<group>"; };
 		45DEB067273AA69300361BDD /* QuizButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DEB06A273AA69300361BDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45DEB06C273AA69300361BDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,15 +165,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		45A9DE3E273ABD900051DA7E /* Standby */ = {
+		45A9DE3E273ABD900051DA7E /* CreatingRoom */ = {
 			isa = PBXGroup;
 			children = (
-				45A9DE3F273ABDE70051DA7E /* Standby.storyboard */,
-				45A9DE41273ABDF50051DA7E /* StandbyViewController.swift */,
-				453AEA03273B5BD30093951A /* StandbyViewModel.swift */,
-				453AEA05273B5C0C0093951A /* StandbyWireframe.swift */,
+				45A9DE3F273ABDE70051DA7E /* CreatingRoom.storyboard */,
+				45A9DE41273ABDF50051DA7E /* CreatingRoomViewController.swift */,
+				453AEA03273B5BD30093951A /* CreatingRoomViewModel.swift */,
+				453AEA05273B5C0C0093951A /* CreatingRoomWireframe.swift */,
 			);
-			path = Standby;
+			path = CreatingRoom;
 			sourceTree = "<group>";
 		};
 		45A9DE43273ABE060051DA7E /* Entrance */ = {
@@ -177,6 +185,25 @@
 				453AEA07273B5C190093951A /* EntranceWireframe.swift */,
 			);
 			path = Entrance;
+			sourceTree = "<group>";
+		};
+		45C3E8EC27473A4300FB9566 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				45C3E8ED27473A6D00FB9566 /* AlertWireframe.swift */,
+				45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		45C3E8EF27473C0E00FB9566 /* Standby */ = {
+			isa = PBXGroup;
+			children = (
+				45C3E8F027473C2100FB9566 /* Standby.storyboard */,
+				45C3E8F227473C2E00FB9566 /* StandbyViewController.swift */,
+				45C3E8F427473C3A00FB9566 /* StandbyViewModel.swift */,
+			);
+			path = Standby;
 			sourceTree = "<group>";
 		};
 		45DEB05E273AA69300361BDD = {
@@ -204,17 +231,18 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				45C3E8EF27473C0E00FB9566 /* Standby */,
+				45C3E8EC27473A4300FB9566 /* Wireframe */,
 				457C20EF274634FB0066C872 /* Model */,
 				457C20EC27461F300066C872 /* Utility */,
 				45A9DE43273ABE060051DA7E /* Entrance */,
-				45A9DE3E273ABD900051DA7E /* Standby */,
+				45A9DE3E273ABD900051DA7E /* CreatingRoom */,
 				45A9DE33273AA7C50051DA7E /* Home */,
 				45DEB06A273AA69300361BDD /* AppDelegate.swift */,
 				45DEB06C273AA69300361BDD /* SceneDelegate.swift */,
 				45DEB073273AA69500361BDD /* Assets.xcassets */,
 				45DEB075273AA69500361BDD /* LaunchScreen.storyboard */,
 				45DEB078273AA69500361BDD /* Info.plist */,
-				45A9DE3A273AB3FB0051DA7E /* Wireframe.swift */,
 			);
 			path = QuizButton;
 			sourceTree = "<group>";
@@ -358,7 +386,8 @@
 				45A9DE45273ABE160051DA7E /* Entrance.storyboard in Resources */,
 				45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */,
 				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
-				45A9DE40273ABDE70051DA7E /* Standby.storyboard in Resources */,
+				45A9DE40273ABDE70051DA7E /* CreatingRoom.storyboard in Resources */,
+				45C3E8F127473C2100FB9566 /* Standby.storyboard in Resources */,
 				45A9DE35273AA8820051DA7E /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,17 +517,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				453AEA08273B5C190093951A /* EntranceWireframe.swift in Sources */,
+				45C3E8F527473C3A00FB9566 /* StandbyViewModel.swift in Sources */,
 				453AEA02273B5BBD0093951A /* EntranceViewModel.swift in Sources */,
 				457C20EE27461F470066C872 /* AlertUtility.swift in Sources */,
-				45A9DE42273ABDF50051DA7E /* StandbyViewController.swift in Sources */,
+				45A9DE42273ABDF50051DA7E /* CreatingRoomViewController.swift in Sources */,
+				45C3E8EE27473A6D00FB9566 /* AlertWireframe.swift in Sources */,
 				457C20F1274635210066C872 /* RoomNumberRequest.swift in Sources */,
 				45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */,
 				45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */,
 				45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */,
 				45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */,
-				453AEA04273B5BD30093951A /* StandbyViewModel.swift in Sources */,
+				45C3E8F327473C2E00FB9566 /* StandbyViewController.swift in Sources */,
+				453AEA04273B5BD30093951A /* CreatingRoomViewModel.swift in Sources */,
 				45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */,
-				453AEA06273B5C0D0093951A /* StandbyWireframe.swift in Sources */,
+				453AEA06273B5C0D0093951A /* CreatingRoomWireframe.swift in Sources */,
 				45A9DE47273ABE220051DA7E /* EntranceViewController.swift in Sources */,
 				45A9DE3D273ABC320051DA7E /* HomeWireframe.swift in Sources */,
 			);

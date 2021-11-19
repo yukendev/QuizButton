@@ -11,12 +11,12 @@ import UIKit
 final class HomeWireframe: Wireframe {
     
     func toStandbyVC() {
-        let storyboard = UIStoryboard(name: "Standby", bundle: nil)
-        let standbyVC = storyboard.instantiateInitialViewController()
-        guard let standbyVC = standbyVC else {
+        let storyboard = UIStoryboard(name: "CreatingRoom", bundle: nil)
+        let creatingRoomVC = storyboard.instantiateInitialViewController()
+        guard let creatingRoomVC = creatingRoomVC else {
             return
         }
-        viewController?.navigationController?.pushViewController(standbyVC, animated: true)
+        viewController?.navigationController?.pushViewController(creatingRoomVC, animated: true)
     }
     
     func toEntranceVC() {
