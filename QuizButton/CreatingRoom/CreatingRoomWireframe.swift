@@ -7,6 +7,6 @@
 
 import Foundation
 
-class StandbyWireframe: Wireframe {
+class CreatingRoomWireframe: Wireframe {
     
 }

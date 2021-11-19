@@ -12,6 +12,12 @@ import MultipeerConnectivity
 
 class EntranceViewModel: NSObject {
     
+    typealias Dependency = (
+        wireframe: EntranceWireframe,
+        alrtWireframe: AlertWireframe
+    )
+    private let dependency: Dependency
+    
     let disposeBag = DisposeBag()
     
     private let serviceType = "QuizButton"
@@ -20,13 +26,14 @@ class EntranceViewModel: NSObject {
     private var browser: MCNearbyServiceBrowser!
     private let peerID = MCPeerID(displayName: UIDevice.current.name)
     
-    private let roomNumberValidationRelay = PublishRelay<Bool>()
-    let isAppropriateRoomNumber: Signal<Bool>
+//    private let roomNumberValidationRelay = PublishRelay<Bool>()
+//    let isAppropriateRoomNumber: Signal<Bool>
     var roomNumberText = BehaviorRelay<String>(value: "")
     
-    init(sendButtonTap: Signal<Void>) {
+    init(dependency: Dependency, sendButtonTap: Signal<Void>) {
         
-        self.isAppropriateRoomNumber = roomNumberValidationRelay.asSignal()
+//        self.isAppropriateRoomNumber = roomNumberValidationRelay.asSignal()
+        self.dependency = dependency
         
         super.init()
         
@@ -43,15 +50,19 @@ class EntranceViewModel: NSObject {
         
         sendButtonTap.emit(onNext: { _ in
             if self.isAppropriateRoomNumber(self.roomNumberText.value) {
-                // Wireframeで画面遷移
-                self.roomNumberValidationRelay.accept(true)
-                guard let roomNumber = Int(self.roomNumberText.value) else {
-                    return
+                if !self.session.connectedPeers.isEmpty {
+                    // TODO: 部屋番号送信
+                    guard let roomNumber = Int(self.roomNumberText.value) else {
+                        return
+                    }
+                    self.sendRoomNumber(roomNumber)
+                } else {
+                    // 接続中の端末がない時
+                    self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりません", message: "", completion: nil)
                 }
-                self.sendRoomNumber(roomNumber)
             } else {
-                // VCでアラートを表示
-                self.roomNumberValidationRelay.accept(false)
+                // TODO: VCでアラート表示
+                self.dependency.alrtWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
             }
         }).disposed(by: disposeBag)
     }
@@ -100,10 +111,17 @@ extension EntranceViewModel: MCSessionDelegate {
             print("from: \(response.id)\nroomNumber: \(response.roomNumber)\nrequestType: \(response.requestType)")
             switch RequestType(rawValue: response.requestType) {
             case .approval:
-                print("approval")
+                // TODO: 画面遷移
+                DispatchQueue.main.async {
+                    self.dependency.wireframe.toStandby()
+                }
             case .reject:
-                print("reject")
+                // TODO: VCでアラート表示
+                DispatchQueue.main.async {
+                    self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりません", message: "", completion: nil)
+                }
             default:
+                // TODO: 何らかの処理
                 print("default")
             }
         } catch {
