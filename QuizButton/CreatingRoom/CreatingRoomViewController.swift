@@ -10,6 +10,9 @@ import UIKit
 class CreatingRoomViewController: UIViewController {
     
     @IBOutlet weak var roomNumberLabel: UILabel!
+    @IBOutlet weak var quizStartButton: UIButton!
+    @IBOutlet weak var standbyMemberLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     let roomNumber = Int.random(in: 1000..<9999)
     
