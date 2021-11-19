@@ -12,112 +12,94 @@ import MultipeerConnectivity
 
 class CreatingRoomViewModel: NSObject {
     
+    typealias Dependency = (
+        wireframe: CreatingRoomWireframe,
+        alertWireframe: AlertWireframe,
+        multiPeerConnectionService: MultiPeerConnectionService
+    )
+    private let dependency: Dependency
+    
+    
     let disposeBag = DisposeBag()
     
-    private let serviceType = "QuizButton"
-    private var session: MCSession!
-    private var advertiser: MCNearbyServiceAdvertiser!
-    private var browser: MCNearbyServiceBrowser!
-    let peerID = MCPeerID(displayName: UIDevice.current.name)
+    private let memberUpdateRelay: BehaviorRelay<Void>
+    let memberUpdated: Driver<Void>
+    
+    var dataSource: CreatingRoomDataSource!
+    
+    var standbyMember: [MCPeerID] = []
+    
     
     var roomNumber: Int
     
-    init(roomNumber: Int) {
+    init(dependency: Dependency, roomNumber: Int) {
         
         self.roomNumber = roomNumber
+        self.memberUpdateRelay = BehaviorRelay(value: ())
+        self.memberUpdated = memberUpdateRelay.asDriver()
+        
+        self.dependency = dependency
         
         super.init()
         
-        session = MCSession(peer: peerID)
-        session.delegate = self
+        self.dependency.multiPeerConnectionService.delegate = self
         
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
-        advertiser.delegate = self
-        advertiser.startAdvertisingPeer()
+        self.dataSource = CreatingRoomDataSource()
         
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-        browser.delegate = self
-        browser.startBrowsingForPeers()
     }
     
-    func sendResponse(response: RoomNumberRequest, peerID: MCPeerID) {
-        let encoder = JSONEncoder()
-        do {
-            let jsonData = try encoder.encode(response)
-            try session.send(jsonData, toPeers: [peerID], with: .reliable)
-        } catch {
-            print(error.localizedDescription)
-        }
+//    func sendResponse(response: RoomNumberRequest, peerID: MCPeerID) {
+//        let encoder = JSONEncoder()
+//        do {
+//            let jsonData = try encoder.encode(response)
+//            try session.send(jsonData, toPeers: [peerID], with: .reliable)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+    
+    func addToStandbyMember(_ member: MCPeerID) {
+        standbyMember.append(member)
+        dataSource.setMember(standbyMember)
     }
-}
-
-
-extension CreatingRoomViewModel: MCSessionDelegate {
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        switch state {
-        case .notConnected:
-            print("\(peerID.displayName)が切断されました")
-        case .connecting:
-            print("\(peerID.displayName)が接続中です")
-        case .connected:
-            print("\(peerID.displayName)が接続されました")
-        @unknown default:
-            print("\(peerID.displayName)が想定外の状態です")
+    
+    func addStandbyMember(_ member: MCPeerID) {
+        if !standbyMember.contains(member) {
+            standbyMember.append(member)
+            dataSource.setMember(standbyMember)
+            memberUpdateRelay.accept(())
         }
     }
     
-    // Data型を受け取った時
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let decoder = JSONDecoder()
-        do {
-            let request = try decoder.decode(RoomNumberRequest.self, from: data)
-            print("from: \(request.id)\nroomNumber: \(request.roomNumber)\nrequestType: \(request.requestType)")
-            if request.roomNumber == self.roomNumber {
-                // 部屋番号が一致
-                let approval = RoomNumberRequest(id: self.peerID.displayName, roomNumber: self.roomNumber, requestType: RequestType.approval)
-                sendResponse(response: approval, peerID: peerID)
-            } else {
-                // 部屋番号が一致しない
-                let reject = RoomNumberRequest(id: self.peerID.displayName, roomNumber: self.roomNumber, requestType: RequestType.reject)
-                sendResponse(response: reject, peerID: peerID)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
+    func deleteStandbyMember(_ member: MCPeerID) {
+        standbyMember.removeAll(where: { $0 == member })
+        dataSource.setMember(standbyMember)
+        memberUpdateRelay.accept(())
     }
     
-    
-    // ファイルの送信はしないのでここは使わない
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        assertionFailure("非対応")
-    }
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        assertionFailure("非対応")
-    }
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        assertionFailure("非対応")
-    }
 }
 
-extension CreatingRoomViewModel: MCNearbyServiceAdvertiserDelegate {
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-//        invitationHandler(true, session)
-    }
-}
-
-
-extension CreatingRoomViewModel: MCNearbyServiceBrowserDelegate {
-    // 機器を検知した時
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("\(peerID.displayName)を発見しました")
-        guard let session = session else {
+extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
+    func receiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
+        guard let sessionType = SessionType(rawValue: sessionData.type) else {
+            print("not implemented")
             return
         }
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 0)
-    }
-    
-    // 検知していた機器が消えた時
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("謎のばしょ")
+        switch sessionType {
+        case .roomNumberRequest:
+            let decoder = JSONDecoder()
+            do {
+                let data = try decoder.decode(RoomNumberRequestData.self, from: sessionData.data)
+                print("================")
+                print(data.roomNumber)
+                print(type(of: data.roomNumber))
+                print("================")
+            } catch {
+                print(error.localizedDescription)
+            }
+        default:
+            print("not implemented")
+            break
+        }
     }
 }
