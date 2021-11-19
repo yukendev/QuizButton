@@ -2,14 +2,14 @@
 //  AlertUtility.swift
 //  QuizButton
 //
-//  Created by 手塚友健 on 2021/11/13.
+//  Created by 手塚友健 on 2021/11/18.
 //
 
 import Foundation
 import UIKit
 
 
-final class AlertUtility {
+class AlertUtility {
     
     static func showSingleAlert(title: String, message: String, viewController: UIViewController?, completion: @escaping (UIAlertAction) -> Void) {
         let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

@@ -21,7 +21,7 @@ class StandbyViewController: UIViewController {
         // 部屋番号をラベルに表示
         roomNumberLabel.text = String(roomNumber)
         
-        viewModel = StandbyViewModel()
+        viewModel = StandbyViewModel(roomNumber: roomNumber)
 
     }
     

@@ -18,12 +18,16 @@ class StandbyViewModel: NSObject {
     private var session: MCSession!
     private var advertiser: MCNearbyServiceAdvertiser!
     private var browser: MCNearbyServiceBrowser!
+    let peerID = MCPeerID(displayName: UIDevice.current.name)
     
-    override init() {
+    var roomNumber: Int
+    
+    init(roomNumber: Int) {
+        
+        self.roomNumber = roomNumber
         
         super.init()
         
-        let peerID = MCPeerID(displayName: UIDevice.current.name)
         session = MCSession(peer: peerID)
         session.delegate = self
         
@@ -34,6 +38,16 @@ class StandbyViewModel: NSObject {
         browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
         browser.delegate = self
         browser.startBrowsingForPeers()
+    }
+    
+    func sendResponse(response: RoomNumberRequest, peerID: MCPeerID) {
+        let encoder = JSONEncoder()
+        do {
+            let jsonData = try encoder.encode(response)
+            try session.send(jsonData, toPeers: [peerID], with: .reliable)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -54,7 +68,22 @@ extension StandbyViewModel: MCSessionDelegate {
     
     // Data型を受け取った時
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("\(peerID.displayName)からデータが送信されました")
+        let decoder = JSONDecoder()
+        do {
+            let request = try decoder.decode(RoomNumberRequest.self, from: data)
+            print("from: \(request.id)\nroomNumber: \(request.roomNumber)\nrequestType: \(request.requestType)")
+            if request.roomNumber == self.roomNumber {
+                // 部屋番号が一致
+                let approval = RoomNumberRequest(id: self.peerID.displayName, roomNumber: self.roomNumber, requestType: RequestType.approval)
+                sendResponse(response: approval, peerID: peerID)
+            } else {
+                // 部屋番号が一致しない
+                let reject = RoomNumberRequest(id: self.peerID.displayName, roomNumber: self.roomNumber, requestType: RequestType.reject)
+                sendResponse(response: reject, peerID: peerID)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
