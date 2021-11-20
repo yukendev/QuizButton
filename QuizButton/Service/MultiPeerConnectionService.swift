@@ -58,7 +58,6 @@ extension MultiPeerConnectionService: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        // TODO: SessionTypeでswitchして処理
         let decoder = JSONDecoder()
         do {
             let sessionData = try decoder.decode(SessionData.self, from: data)
@@ -107,17 +106,14 @@ extension MultiPeerConnectionService: MCNearbyServiceBrowserDelegate {
 
 
 extension MultiPeerConnectionService {
-    // 部屋番号の送信
-    func sendRoomNumber(_ roomNumber: Int) {
-        let data = String(roomNumber).data(using: .utf8)!
-        let request = SessionData(type: SessionType.roomNumberRequest, data: data)
+    
+    func sendData(_ sessionData: SessionData) {
         let encoder = JSONEncoder()
         do {
-            let jsonData = try encoder.encode(request)
+            let jsonData = try encoder.encode(sessionData)
             try session.send(jsonData, toPeers: session.connectedPeers, with: .reliable)
         } catch {
-            print("Entrance: 部屋番号が送信できません")
-//            print(error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
 }

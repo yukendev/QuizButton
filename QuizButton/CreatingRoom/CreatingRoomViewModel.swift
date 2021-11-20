@@ -87,15 +87,16 @@ extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
         }
         switch sessionType {
         case .roomNumberRequest:
-            let decoder = JSONDecoder()
-            do {
-                let data = try decoder.decode(RoomNumberRequestData.self, from: sessionData.data)
-                print("================")
-                print(data.roomNumber)
-                print(type(of: data.roomNumber))
-                print("================")
-            } catch {
-                print(error.localizedDescription)
+            guard let strRoomNumber = sessionData.data?["roomNumber"], let roomNumber = Int(strRoomNumber) else {
+                return
+            }
+            print("部屋番号: \(roomNumber)でリクエストが来ました")
+            if roomNumber == self.roomNumber {
+                let sessionData = SessionData(type: SessionType.roomNumberApproval, data: nil)
+                self.dependency.multiPeerConnectionService.sendData(sessionData)
+            } else {
+                let sessionData = SessionData(type: SessionType.roomNumberReject, data: nil)
+                self.dependency.multiPeerConnectionService.sendData(sessionData)
             }
         default:
             print("not implemented")

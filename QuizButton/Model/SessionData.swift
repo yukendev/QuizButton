@@ -6,37 +6,15 @@
 //
 
 import Foundation
-import MultipeerConnectivity
-
 
 struct SessionData: Codable {
 
     let type: SessionType.RawValue
-    let data: Data
+    let data: [String: String]?
 
-    init(type: SessionType, data: Data) {
+    init(type: SessionType, data: [String: String]?) {
         self.type = type.rawValue
         self.data = data
     }
 
-}
-
-//struct SessionData<T: Codable>: Codable {
-//
-//    let type: SessionType.RawValue
-//    let data: T
-//
-//    init(type: SessionType, data: T) {
-//        self.type = type.rawValue
-//        self.data = data
-//    }
-//
-//}
-
-class RoomNumberRequestData: Codable {
-    var roomNumber: Int
-}
-
-class AnySessionData: RoomNumberRequestData {
-    
 }
