@@ -11,6 +11,10 @@ import RxCocoa
 
 class CreatingRoomViewController: UIViewController {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     @IBOutlet weak var roomNumberLabel: UILabel!
     @IBOutlet weak var quizStartButton: UIButton!
     @IBOutlet weak var standbyMemberLabel: UILabel!
@@ -39,8 +43,8 @@ class CreatingRoomViewController: UIViewController {
             MultiPeerConnectionService()
         ), roomNumber: roomNumber)
         
-        viewModel.memberUpdated.drive(onNext: { _ in
-            self.tableView.reloadData()
+        viewModel.memberUpdated.drive(onNext: { [weak self] _ in
+            self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         
         self.tableView.delegate = viewModel.dataSource

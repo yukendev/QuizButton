@@ -12,6 +12,10 @@ import MultipeerConnectivity
 
 class EntranceViewModel: NSObject {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     typealias Dependency = (
         wireframe: EntranceWireframe,
         alrtWireframe: AlertWireframe,

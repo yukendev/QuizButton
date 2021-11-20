@@ -12,6 +12,10 @@ import MultipeerConnectivity
 
 class CreatingRoomViewModel: NSObject {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     typealias Dependency = (
         wireframe: CreatingRoomWireframe,
         alertWireframe: AlertWireframe,
@@ -47,16 +51,6 @@ class CreatingRoomViewModel: NSObject {
         self.dataSource = CreatingRoomDataSource()
         
     }
-    
-//    func sendResponse(response: RoomNumberRequest, peerID: MCPeerID) {
-//        let encoder = JSONEncoder()
-//        do {
-//            let jsonData = try encoder.encode(response)
-//            try session.send(jsonData, toPeers: [peerID], with: .reliable)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
     
     func addToStandbyMember(_ member: MCPeerID) {
         standbyMember.append(member)

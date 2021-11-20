@@ -11,6 +11,10 @@ import RxCocoa
 
 class EntranceViewController: UIViewController {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     
     @IBOutlet weak var roomNumberTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
