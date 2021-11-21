@@ -33,6 +33,9 @@ class CreatingRoomViewModel: NSObject {
     
     var standbyMember: [MCPeerID] = []
     
+    var numberOfStandbyMember: Driver<Int>
+    private let numberOfStandbyMemberRelay: BehaviorRelay<Int>
+    
     
     var roomNumber: Int
     
@@ -42,6 +45,9 @@ class CreatingRoomViewModel: NSObject {
         self.memberUpdateRelay = BehaviorRelay(value: ())
         self.memberUpdated = memberUpdateRelay.asDriver()
         
+        self.numberOfStandbyMemberRelay = BehaviorRelay(value: 0)
+        self.numberOfStandbyMember = numberOfStandbyMemberRelay.asDriver()
+        
         self.dependency = dependency
         
         super.init()
@@ -50,17 +56,24 @@ class CreatingRoomViewModel: NSObject {
         
         self.dataSource = CreatingRoomDataSource()
         
-    }
-    
-    func addToStandbyMember(_ member: MCPeerID) {
-        standbyMember.append(member)
-        dataSource.setMember(standbyMember)
+        self.dataSource.didSelectRow.subscribe(onNext: { [weak self] peerID in
+            self?.dependency.alertWireframe.showDoubleAlert(
+                title: "\(peerID.displayName)さんを退出させますか?",
+                message: "",
+                completion: { _ in
+                    self?.deleteStandbyMember(peerID)
+                    let sessionData = SessionData(type: .kickedFromRoom, data: nil)
+                    self?.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [peerID])
+                })
+        }).disposed(by: disposeBag)
+        
     }
     
     func addStandbyMember(_ member: MCPeerID) {
         if !standbyMember.contains(member) {
             standbyMember.append(member)
             dataSource.setMember(standbyMember)
+            numberOfStandbyMemberRelay.accept(standbyMember.count)
             memberUpdateRelay.accept(())
         }
     }
@@ -68,13 +81,29 @@ class CreatingRoomViewModel: NSObject {
     func deleteStandbyMember(_ member: MCPeerID) {
         standbyMember.removeAll(where: { $0 == member })
         dataSource.setMember(standbyMember)
+        numberOfStandbyMemberRelay.accept(standbyMember.count)
         memberUpdateRelay.accept(())
     }
     
 }
 
 extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
-    func receiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
+    
+    func didChangeState(peerID: MCPeerID, state: MCSessionState) {
+        switch state {
+        case .notConnected:
+            print("\(peerID.displayName)が切断されました")
+            self.deleteStandbyMember(peerID)
+        case .connecting:
+            print("\(peerID.displayName)が接続中です")
+        case .connected:
+            print("\(peerID.displayName)が接続されました")
+        @unknown default:
+            print("\(peerID.displayName)が想定外の状態です")
+        }
+    }
+    
+    func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
         guard let sessionType = SessionType(rawValue: sessionData.type) else {
             print("not implemented")
             return
@@ -84,13 +113,16 @@ extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
             guard let strRoomNumber = sessionData.data?["roomNumber"], let roomNumber = Int(strRoomNumber) else {
                 return
             }
-            print("部屋番号: \(roomNumber)でリクエストが来ました")
             if roomNumber == self.roomNumber {
+                // 部屋番号承認
                 let sessionData = SessionData(type: SessionType.roomNumberApproval, data: nil)
-                self.dependency.multiPeerConnectionService.sendData(sessionData)
+                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
+                // TODO: 待機中のメンバーに追加
+                self.addStandbyMember(fromPeer)
             } else {
+                // 部屋番号拒否
                 let sessionData = SessionData(type: SessionType.roomNumberReject, data: nil)
-                self.dependency.multiPeerConnectionService.sendData(sessionData)
+                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
             }
         default:
             print("not implemented")

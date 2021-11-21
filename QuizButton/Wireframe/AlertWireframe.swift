@@ -25,4 +25,16 @@ class AlertWireframe: Wireframe {
         vc.present(alert, animated: true)
     }
     
+    func showDoubleAlert(title: String, message: String, completion: @escaping (UIAlertAction) -> Void) {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let actionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: completion)
+        let cancelButton: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        alert.addAction(actionButton)
+        alert.addAction(cancelButton)
+        guard let vc = viewController else {
+            return
+        }
+        vc.present(alert, animated: true)
+    }
+    
 }

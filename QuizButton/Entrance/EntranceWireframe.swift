@@ -7,15 +7,13 @@
 
 import Foundation
 import UIKit
+import Instantiate
+import InstantiateStandard
 
 class EntranceWireframe: Wireframe {
     
-    func toStandby() {
-        let storyboard = UIStoryboard(name: "Standby", bundle: nil)
-        let standbyVC = storyboard.instantiateInitialViewController()
-        guard let standbyVC = standbyVC else {
-            return
-        }
+    func toStandby(dependency multiPeerConnectionService: MultiPeerConnectionService) {
+        let standbyVC = StandbyViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(standbyVC, animated: true)
     }
 }

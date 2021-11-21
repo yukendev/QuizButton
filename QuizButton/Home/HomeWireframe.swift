@@ -11,7 +11,7 @@ import UIKit
 final class HomeWireframe: Wireframe {
     
     func toStandbyVC() {
-        let storyboard = UIStoryboard(name: "CreatingRoom", bundle: nil)
+        let storyboard = UIStoryboard(name: "CreatingRoomViewController", bundle: nil)
         let creatingRoomVC = storyboard.instantiateInitialViewController()
         guard let creatingRoomVC = creatingRoomVC else {
             return
@@ -20,7 +20,7 @@ final class HomeWireframe: Wireframe {
     }
     
     func toEntranceVC() {
-        let storyboard = UIStoryboard(name: "Entrance", bundle: nil)
+        let storyboard = UIStoryboard(name: "EntranceViewController", bundle: nil)
         let entranceVC = storyboard.instantiateInitialViewController()
         guard let entranceVC = entranceVC else {
             return

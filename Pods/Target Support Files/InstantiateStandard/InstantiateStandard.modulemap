@@ -1,0 +1,6 @@
+framework module InstantiateStandard {
+  umbrella header "InstantiateStandard-umbrella.h"
+
+  export *
+  module * { export * }
+}

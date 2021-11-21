@@ -57,7 +57,21 @@ class EntranceViewModel: NSObject {
 }
 
 extension EntranceViewModel: MultiPeerConnectionDelegate {
-    func receiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
+    
+    func didChangeState(peerID: MCPeerID, state: MCSessionState) {
+        switch state {
+        case .notConnected:
+            print("\(peerID.displayName)が切断されました")
+        case .connecting:
+            print("\(peerID.displayName)が接続中です")
+        case .connected:
+            print("\(peerID.displayName)が接続されました")
+        @unknown default:
+            print("\(peerID.displayName)が想定外の状態です")
+        }
+    }
+    
+    func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
         guard let sessionType = SessionType(rawValue: sessionData.type) else {
             print("not implemented")
             return
@@ -65,8 +79,14 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
         switch sessionType {
         case .roomNumberApproval:
             print("部屋番号が承認されました")
+            DispatchQueue.main.async {
+                self.dependency.wireframe.toStandby(dependency: self.dependency.multiPeerConnectionService)
+            }
         case .roomNumberReject:
             print("部屋番号が拒否されました")
+            DispatchQueue.main.async {
+                self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "", completion: nil)
+            }
         default:
             print("not implemented")
         }

@@ -10,7 +10,8 @@ import MultipeerConnectivity
 
 
 protocol MultiPeerConnectionDelegate: AnyObject {
-    func receiveHandler(sessionData: SessionData, fromPeer: MCPeerID)
+    func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) // データを受け取った後の処理
+    func didChangeState(peerID: MCPeerID, state: MCSessionState) // 通信の状態が変化した後の処理
 }
 
 
@@ -18,6 +19,9 @@ class MultiPeerConnectionService: NSObject {
     
     deinit {
         print("deinit: \(type(of: self))")
+        browser.stopBrowsingForPeers()
+        advertiser.stopAdvertisingPeer()
+        session.disconnect()
     }
     
     let serviceType = "QuizButton"
@@ -49,16 +53,7 @@ class MultiPeerConnectionService: NSObject {
 
 extension MultiPeerConnectionService: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        switch state {
-        case .notConnected:
-            print("\(peerID.displayName)が切断されました")
-        case .connecting:
-            print("\(peerID.displayName)が接続中です")
-        case .connected:
-            print("\(peerID.displayName)が接続されました")
-        @unknown default:
-            print("\(peerID.displayName)が想定外の状態です")
-        }
+        delegate?.didChangeState(peerID: peerID, state: state)
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
@@ -68,7 +63,7 @@ extension MultiPeerConnectionService: MCSessionDelegate {
             guard let sessionType = SessionType(rawValue: sessionData.type) else {
                 return
             }
-            delegate?.receiveHandler(sessionData: sessionData, fromPeer: peerID)
+            delegate?.didReceiveHandler(sessionData: sessionData, fromPeer: peerID)
         } catch {
             print(error.localizedDescription)
         }
@@ -111,11 +106,11 @@ extension MultiPeerConnectionService: MCNearbyServiceBrowserDelegate {
 
 extension MultiPeerConnectionService {
     
-    func sendData(_ sessionData: SessionData) {
+    func sendData(_ sessionData: SessionData, toPeer: [MCPeerID]? = nil) {
         let encoder = JSONEncoder()
         do {
             let jsonData = try encoder.encode(sessionData)
-            try session.send(jsonData, toPeers: session.connectedPeers, with: .reliable)
+            try session.send(jsonData, toPeers: toPeer ?? session.connectedPeers, with: .reliable)
         } catch {
             print(error.localizedDescription)
         }
