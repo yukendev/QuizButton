@@ -47,6 +47,11 @@ class CreatingRoomViewController: UIViewController {
             self?.tableView.reloadData()
         }).disposed(by: disposeBag)
         
+        viewModel.numberOfStandbyMember.drive(onNext: { [weak self] numberOfStandbyMember in
+            self?.standbyMemberLabel.text = "\(numberOfStandbyMember)人が待機中..."
+        }).disposed(by: disposeBag)
+        
+        
         self.tableView.delegate = viewModel.dataSource
         self.tableView.dataSource = viewModel.dataSource
     }

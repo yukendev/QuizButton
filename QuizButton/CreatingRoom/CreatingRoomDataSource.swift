@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 import MultipeerConnectivity
+import RxCocoa
+import RxSwift
 
 
 final class CreatingRoomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var member: [MCPeerID] = []
+    
+    let didSelectRow: PublishRelay = PublishRelay<MCPeerID>()
     
     override init() {
         super.init()
@@ -31,6 +35,12 @@ final class CreatingRoomDataSource: NSObject, UITableViewDelegate, UITableViewDa
         cell.setData(member[indexPath.row])
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row < member.count {
+            self.didSelectRow.accept(self.member[indexPath.row])
+        }
     }
     
     

@@ -6,24 +6,34 @@
 //
 
 import UIKit
+import Instantiate
+import InstantiateStandard
+
+
+extension StandbyViewController: StoryboardInstantiatable {
+    // sessionを共有するために前の画面と同じMultiPeerConnectionServiceを使う
+    typealias Dependency = MultiPeerConnectionService
+    func inject(_ dependency: Dependency) {
+        multiPeerConnectionService = dependency
+    }
+}
+
 
 class StandbyViewController: UIViewController {
-
+    
+    
+    private var viewModel: StandbyViewModel!
+    
+    private var multiPeerConnectionService: MultiPeerConnectionService!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.viewModel = StandbyViewModel(
+            dependency: (
+                StandbyWireframe(self),
+                AlertWireframe(self),
+                multiPeerConnectionService
+            ))
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
