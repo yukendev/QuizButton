@@ -1,8 +1,8 @@
 //
-//  StandbyViewController.swift
+//  QuizViewController.swift
 //  QuizButton
 //
-//  Created by 手塚友健 on 2021/11/19.
+//  Created by 手塚友健 on 2021/11/21.
 //
 
 import UIKit
@@ -10,44 +10,46 @@ import Instantiate
 import InstantiateStandard
 
 
-extension StandbyViewController: StoryboardInstantiatable {
+extension QuizViewController: StoryboardInstantiatable {
     // sessionを共有するために前の画面と同じMultiPeerConnectionServiceを使う
     typealias Dependency = (
         multiPeerConnectionService: MultiPeerConnectionService,
         roomNumber: Int
-    )
+        )
     func inject(_ dependency: Dependency) {
         multiPeerConnectionService = dependency.multiPeerConnectionService
         roomNumber = dependency.roomNumber
     }
 }
 
-
-class StandbyViewController: UIViewController {
+class QuizViewController: UIViewController {
     
-    deinit {
-        print("deinit: \(type(of: self))")
-    }
     
+    @IBOutlet weak var quizButton: UIButton!
     @IBOutlet weak var leaveButton: UIButton!
     
-    private var viewModel: StandbyViewModel!
+    private var viewModel: QuizViewModel!
     
     private var multiPeerConnectionService: MultiPeerConnectionService!
     
     private var roomNumber: Int!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.viewModel = StandbyViewModel(
+        self.viewModel = QuizViewModel(
             dependency: (
-                StandbyWireframe(self),
+                QuizWireframe(self),
                 AlertWireframe(self),
-                multiPeerConnectionService
+                self.multiPeerConnectionService
             ),
-            leaveButtonTap: leaveButton.rx.tap.asSignal(),
+            input: (
+                quizButton.rx.tap.asSignal(),
+                leaveButton.rx.tap.asSignal()
+            ),
             roomNumber: roomNumber
         )
     }
+    
+
 }

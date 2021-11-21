@@ -38,8 +38,10 @@ class EntranceViewModel: NSObject {
         sendButtonTap.emit(onNext: { _ in
             if self.isAppropriateRoomNumber(self.roomNumberText.value) {
                 // 部屋番号の送信
-                let data = ["roomNumber": self.roomNumberText.value]
-                let sessionData = SessionData(type: SessionType.roomNumberRequest, data: data)
+                guard let roomNumber = Int(self.roomNumberText.value) else {
+                    return
+                }
+                let sessionData = SessionData(type: SessionType.roomNumberRequest, roomNumber: roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData)
             } else {
                 self.dependency.alrtWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
@@ -56,6 +58,7 @@ class EntranceViewModel: NSObject {
     }
 }
 
+// MARK: - MultiPeerConnectionDelegate
 extension EntranceViewModel: MultiPeerConnectionDelegate {
     
     func didChangeState(peerID: MCPeerID, state: MCSessionState) {
@@ -78,12 +81,12 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
         }
         switch sessionType {
         case .roomNumberApproval:
-            print("部屋番号が承認されました")
+            // 部屋番号が承認された時
             DispatchQueue.main.async {
-                self.dependency.wireframe.toStandby(dependency: self.dependency.multiPeerConnectionService)
+                self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService, roomNumber: sessionData.roomNumber)
             }
         case .roomNumberReject:
-            print("部屋番号が拒否されました")
+            // 部屋番号が拒否された時
             DispatchQueue.main.async {
                 self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "", completion: nil)
             }

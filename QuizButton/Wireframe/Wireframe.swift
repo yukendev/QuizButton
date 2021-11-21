@@ -15,7 +15,7 @@ class Wireframe {
         self.viewController = viewController
     }
     
-    func bachToFirstScreen() {
+    func backToFirstScreen() {
         // 最初の画面に戻る
         self.viewController?.navigationController?.popToRootViewController(animated: true)
     }
