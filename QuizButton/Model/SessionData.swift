@@ -10,11 +10,11 @@ import Foundation
 struct SessionData: Codable {
 
     let type: SessionType.RawValue
-    let data: [String: String]?
+    let roomNumber: Int
 
-    init(type: SessionType, data: [String: String]?) {
+    init(type: SessionType, roomNumber: Int) {
         self.type = type.rawValue
-        self.data = data
+        self.roomNumber = roomNumber
     }
-
 }
+

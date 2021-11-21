@@ -8,6 +8,11 @@
 import Foundation
 import MultipeerConnectivity
 
+enum MultiPeerType {
+    case host // クイズ主催者
+    case guest // クイズ参加者
+}
+
 
 protocol MultiPeerConnectionDelegate: AnyObject {
     func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) // データを受け取った後の処理
@@ -19,9 +24,13 @@ class MultiPeerConnectionService: NSObject {
     
     deinit {
         print("deinit: \(type(of: self))")
-        browser.stopBrowsingForPeers()
-        advertiser.stopAdvertisingPeer()
         session.disconnect()
+        switch multiPeerType {
+        case .host:
+            advertiser.stopAdvertisingPeer()
+        case .guest:
+            browser.stopBrowsingForPeers()
+        }
     }
     
     let serviceType = "QuizButton"
@@ -30,22 +39,29 @@ class MultiPeerConnectionService: NSObject {
     var browser: MCNearbyServiceBrowser!
     let peerID = MCPeerID(displayName: UIDevice.current.name)
     
+    let multiPeerType: MultiPeerType
+    
     weak var delegate: MultiPeerConnectionDelegate?
     
-    override init() {
+    init(multiPeerType: MultiPeerType) {
+        
+        self.multiPeerType = multiPeerType
         
         super.init()
 
         session = MCSession(peer: peerID)
         session.delegate = self
         
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
-        advertiser.delegate = self
-        advertiser.startAdvertisingPeer()
-        
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-        browser.delegate = self
-        browser.startBrowsingForPeers()
+        switch multiPeerType {
+        case .host:
+            advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
+            advertiser.delegate = self
+            advertiser.startAdvertisingPeer()
+        case .guest:
+            browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
+            browser.delegate = self
+            browser.startBrowsingForPeers()
+        }
     }
     
 }
@@ -60,7 +76,7 @@ extension MultiPeerConnectionService: MCSessionDelegate {
         let decoder = JSONDecoder()
         do {
             let sessionData = try decoder.decode(SessionData.self, from: data)
-            guard let sessionType = SessionType(rawValue: sessionData.type) else {
+            guard SessionType(rawValue: sessionData.type) != nil else {
                 return
             }
             delegate?.didReceiveHandler(sessionData: sessionData, fromPeer: peerID)

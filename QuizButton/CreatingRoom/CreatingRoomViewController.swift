@@ -40,8 +40,10 @@ class CreatingRoomViewController: UIViewController {
         viewModel = CreatingRoomViewModel(dependency: (
             CreatingRoomWireframe(self),
             AlertWireframe(self),
-            MultiPeerConnectionService()
-        ), roomNumber: roomNumber)
+            MultiPeerConnectionService(multiPeerType: .host)
+        ),
+            startButtonTap: quizStartButton.rx.tap.asSignal(),
+            roomNumber: roomNumber)
         
         viewModel.memberUpdated.drive(onNext: { [weak self] _ in
             self?.tableView.reloadData()

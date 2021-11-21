@@ -16,4 +16,10 @@ enum SessionType: String {
     
     case kickedFromRoom // 部屋に入った後にホストからキックされた場合
     
+    case startQuiz // クイズの開始
+    
+    case roomDeleted // 部屋の解散
+    
+    case quizAnswer // 誰かが早押しボタンを押した
+    
 }

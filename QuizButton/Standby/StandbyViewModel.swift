@@ -7,6 +7,8 @@
 
 import Foundation
 import MultipeerConnectivity
+import RxCocoa
+import RxSwift
 
 class StandbyViewModel: NSObject {
     
@@ -17,21 +19,31 @@ class StandbyViewModel: NSObject {
     )
     private let dependency: Dependency
     
+    private let disposeBag = DisposeBag()
+    
+    private let roomNumber: Int
+    
     
     deinit {
         print("deinit: \(type(of: self))")
     }
     
-    init(dependency: Dependency) {
+    init(dependency: Dependency, leaveButtonTap: Signal<Void>, roomNumber: Int) {
         
         self.dependency = dependency
+        self.roomNumber = roomNumber
         
         super.init()
         
         self.dependency.multiPeerConnectionService.delegate = self
+        
+        leaveButtonTap.emit(onNext: { _ in
+            self.dependency.wireframe.backToFirstScreen()
+        }).disposed(by: disposeBag)
     }
 }
 
+// MARK: - MultiPeerConnectionDelegate
 extension StandbyViewModel: MultiPeerConnectionDelegate {
     func didChangeState(peerID: MCPeerID, state: MCSessionState) {
         switch state {
@@ -53,9 +65,20 @@ extension StandbyViewModel: MultiPeerConnectionDelegate {
         }
         switch sessionType {
         case .kickedFromRoom:
-            DispatchQueue.main.async {
-                self.dependency.alertWireframe.showSingleAlert(title: "部屋からキックされました", message: "") { _ in
-                    self.dependency.wireframe.bachToFirstScreen()
+            // 部屋から強制退出
+            if sessionData.roomNumber == self.roomNumber {
+                DispatchQueue.main.async {
+                    self.dependency.alertWireframe.showSingleAlert(title: "部屋からキックされました", message: "") { _ in
+                        self.dependency.wireframe.backToFirstScreen()
+                    }
+                }
+            }
+        case .startQuiz:
+            // クイズが開始した時
+            if sessionData.roomNumber == self.roomNumber {
+                // 同じ部屋の人がクイズを開始した時
+                DispatchQueue.main.async {
+                    self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService, roomNumber: self.roomNumber)
                 }
             }
         default:

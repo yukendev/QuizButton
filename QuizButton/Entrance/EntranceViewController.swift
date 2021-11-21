@@ -30,7 +30,7 @@ class EntranceViewController: UIViewController {
             dependency: (
                 EntranceWireframe(self),
                 AlertWireframe(self),
-                MultiPeerConnectionService()
+                MultiPeerConnectionService(multiPeerType: .guest)
             ),
             sendButtonTap: sendButton.rx.tap.asSignal()
         )

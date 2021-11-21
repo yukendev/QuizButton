@@ -9,5 +9,12 @@ import Foundation
 
 
 class StandbyWireframe: Wireframe {
-    
+    func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService, roomNumber: Int) {
+        let dependency = (
+            multiPeerConnectionService,
+            roomNumber
+        )
+        let quizVC = QuizViewController(with: dependency)
+        viewController?.navigationController?.pushViewController(quizVC, animated: true)
+    }
 }
