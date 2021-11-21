@@ -25,7 +25,8 @@ class EntranceViewController: UIViewController {
         viewModel = EntranceViewModel(
             dependency: (
                 EntranceWireframe(self),
-                AlertWireframe(self)
+                AlertWireframe(self),
+                MultiPeerConnectionService()
             ),
             sendButtonTap: sendButton.rx.tap.asSignal()
         )
