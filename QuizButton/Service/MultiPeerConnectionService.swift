@@ -9,12 +9,16 @@ import Foundation
 import MultipeerConnectivity
 
 
-protocol MultiPeerConnectionDelegate {
+protocol MultiPeerConnectionDelegate: AnyObject {
     func receiveHandler(sessionData: SessionData, fromPeer: MCPeerID)
 }
 
 
 class MultiPeerConnectionService: NSObject {
+    
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
     
     let serviceType = "QuizButton"
     var session: MCSession!
@@ -22,7 +26,7 @@ class MultiPeerConnectionService: NSObject {
     var browser: MCNearbyServiceBrowser!
     let peerID = MCPeerID(displayName: UIDevice.current.name)
     
-    var delegate: MultiPeerConnectionDelegate?
+    weak var delegate: MultiPeerConnectionDelegate?
     
     override init() {
         
