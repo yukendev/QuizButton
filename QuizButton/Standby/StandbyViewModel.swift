@@ -2,44 +2,50 @@
 //  StandbyViewModel.swift
 //  QuizButton
 //
-//  Created by 手塚友健 on 2021/11/10.
+//  Created by 手塚友健 on 2021/11/19.
 //
 
 import Foundation
+import MultipeerConnectivity
 import RxCocoa
 import RxSwift
-import MultipeerConnectivity
 
 class StandbyViewModel: NSObject {
     
-    let disposeBag = DisposeBag()
+    typealias Dependency = (
+        wireframe: StandbyWireframe,
+        alertWireframe: AlertWireframe,
+        multiPeerConnectionService: MultiPeerConnectionService
+    )
+    private let dependency: Dependency
     
-    private let serviceType = "QuizButton"
-    private var session: MCSession!
-    private var advertiser: MCNearbyServiceAdvertiser!
-    private var browser: MCNearbyServiceBrowser!
+    private let disposeBag = DisposeBag()
     
-    override init() {
+    private let roomNumber: Int
+    
+    
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
+    init(dependency: Dependency, leaveButtonTap: Signal<Void>, roomNumber: Int) {
+        
+        self.dependency = dependency
+        self.roomNumber = roomNumber
         
         super.init()
         
-        let peerID = MCPeerID(displayName: UIDevice.current.name)
-        session = MCSession(peer: peerID)
-        session.delegate = self
+        self.dependency.multiPeerConnectionService.delegate = self
         
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
-        advertiser.delegate = self
-        advertiser.startAdvertisingPeer()
-        
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-        browser.delegate = self
-        browser.startBrowsingForPeers()
+        leaveButtonTap.emit(onNext: { _ in
+            self.dependency.wireframe.backToFirstScreen()
+        }).disposed(by: disposeBag)
     }
 }
 
-
-extension StandbyViewModel: MCSessionDelegate {
-    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+// MARK: - MultiPeerConnectionDelegate
+extension StandbyViewModel: MultiPeerConnectionDelegate {
+    func didChangeState(peerID: MCPeerID, state: MCSessionState) {
         switch state {
         case .notConnected:
             print("\(peerID.displayName)が切断されました")
@@ -52,43 +58,31 @@ extension StandbyViewModel: MCSessionDelegate {
         }
     }
     
-    // Data型を受け取った時
-    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        print("\(peerID.displayName)からデータが送信されました")
-    }
-    
-    
-    // ファイルの送信はしないのでここは使わない
-    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        assertionFailure("非対応")
-    }
-    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        assertionFailure("非対応")
-    }
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        assertionFailure("非対応")
-    }
-}
-
-extension StandbyViewModel: MCNearbyServiceAdvertiserDelegate {
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-//        invitationHandler(true, session)
-    }
-}
-
-
-extension StandbyViewModel: MCNearbyServiceBrowserDelegate {
-    // 機器を検知した時
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("\(peerID.displayName)を発見しました")
-        guard let session = session else {
+    func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
+        guard let sessionType = SessionType(rawValue: sessionData.type) else {
+            print("not implemented")
             return
         }
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 0)
-    }
-    
-    // 検知していた機器が消えた時
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("謎のばしょ")
+        switch sessionType {
+        case .kickedFromRoom:
+            // 部屋から強制退出
+            if sessionData.roomNumber == self.roomNumber {
+                DispatchQueue.main.async {
+                    self.dependency.alertWireframe.showSingleAlert(title: "部屋からキックされました", message: "") { _ in
+                        self.dependency.wireframe.backToFirstScreen()
+                    }
+                }
+            }
+        case .startQuiz:
+            // クイズが開始した時
+            if sessionData.roomNumber == self.roomNumber {
+                // 同じ部屋の人がクイズを開始した時
+                DispatchQueue.main.async {
+                    self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService, roomNumber: self.roomNumber)
+                }
+            }
+        default:
+            print("not implemented")
+        }
     }
 }

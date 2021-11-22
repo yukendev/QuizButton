@@ -11,16 +11,34 @@ import RxCocoa
 
 class EntranceViewController: UIViewController {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     
     @IBOutlet weak var roomNumberTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
     
     private var viewModel: EntranceViewModel!
+    
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = EntranceViewModel(sendButtonTap: sendButton.rx.tap.asSignal())
+        viewModel = EntranceViewModel(
+            dependency: (
+                EntranceWireframe(self),
+                AlertWireframe(self),
+                MultiPeerConnectionService(multiPeerType: .guest)
+            ),
+            sendButtonTap: sendButton.rx.tap.asSignal()
+        )
+        
+        roomNumberTextField.rx.text.orEmpty
+            .bind(to: viewModel.roomNumberText)
+            .disposed(by: disposeBag)
+        
     }
     
 

@@ -1,4 +1,7 @@
 PODS:
+  - Instantiate (4.0.0)
+  - InstantiateStandard (4.0.0):
+    - Instantiate (~> 4.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -7,20 +10,26 @@ PODS:
   - RxSwift (6.2.0)
 
 DEPENDENCIES:
+  - Instantiate
+  - InstantiateStandard
   - RxCocoa (= 6.2.0)
   - RxSwift (= 6.2.0)
 
 SPEC REPOS:
   trunk:
+    - Instantiate
+    - InstantiateStandard
     - RxCocoa
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
+  Instantiate: 62516e7dde448721c1f5815a9ee7e0669d034d52
+  InstantiateStandard: 18ab1417ba787113350c71a5b2251f0b4448be67
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: 6c388641c278b1ffcc07d89bb0c7e3a275ca85fd
+PODFILE CHECKSUM: fb62d978411b9f407b1b47df745a011346433044
 
 COCOAPODS: 1.10.1
