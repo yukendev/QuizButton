@@ -15,6 +15,7 @@ class CreatingRoomViewController: UIViewController {
         print("deinit: \(type(of: self))")
     }
     
+    @IBOutlet weak var dissolveButton: UIButton!
     @IBOutlet weak var roomNumberLabel: UILabel!
     @IBOutlet weak var quizStartButton: UIButton!
     @IBOutlet weak var standbyMemberLabel: UILabel!
@@ -24,26 +25,37 @@ class CreatingRoomViewController: UIViewController {
             tableView.separatorStyle = .none
         }
     }
-    
-    let roomNumber = Int.random(in: 1000..<9999)
-    
+        
     let disposeBag = DisposeBag()
     
     private var viewModel: CreatingRoomViewModel!
-
+    
+    let UD = UserDefaultService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 部屋番号をラベルに表示
-        roomNumberLabel.text = String(roomNumber)
+        // UserDefaultsに部屋番号を保存
+        do {
+            try UD.setRoomNumber(Int.random(in: 1000..<9999))
+        } catch let error {
+            QBLogger.error(error)
+        }
         
-        viewModel = CreatingRoomViewModel(dependency: (
-            CreatingRoomWireframe(self),
-            AlertWireframe(self),
-            MultiPeerConnectionService(multiPeerType: .host)
-        ),
-            startButtonTap: quizStartButton.rx.tap.asSignal(),
-            roomNumber: roomNumber)
+        // 部屋番号をラベルに表示
+        roomNumberLabel.text = String(UD.roomNumber)
+        
+        
+        viewModel = CreatingRoomViewModel(
+            dependency: (
+                CreatingRoomWireframe(self),
+                AlertWireframe(self),
+                MultiPeerConnectionService(multiPeerType: .host)
+            ), input: (
+                quizStartButton.rx.tap.asSignal(),
+                dissolveButton.rx.tap.asSignal()
+            )
+        )
         
         viewModel.memberUpdated.drive(onNext: { [weak self] _ in
             self?.tableView.reloadData()
@@ -56,6 +68,8 @@ class CreatingRoomViewController: UIViewController {
         
         self.tableView.delegate = viewModel.dataSource
         self.tableView.dataSource = viewModel.dataSource
+        
+        self.navigationItem.hidesBackButton = true
     }
     
 }

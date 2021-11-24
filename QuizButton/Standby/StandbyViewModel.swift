@@ -21,17 +21,15 @@ class StandbyViewModel: NSObject {
     
     private let disposeBag = DisposeBag()
     
-    private let roomNumber: Int
-    
+    let UD = UserDefaultService.shared
     
     deinit {
         print("deinit: \(type(of: self))")
     }
     
-    init(dependency: Dependency, leaveButtonTap: Signal<Void>, roomNumber: Int) {
+    init(dependency: Dependency, leaveButtonTap: Signal<Void>) {
         
         self.dependency = dependency
-        self.roomNumber = roomNumber
         
         super.init()
         
@@ -59,6 +57,9 @@ extension StandbyViewModel: MultiPeerConnectionDelegate {
     }
     
     func didReceiveHandler(sessionData: SessionData, fromPeer: MCPeerID) {
+        guard sessionData.roomNumber == self.UD.roomNumber else {
+            return
+        }
         guard let sessionType = SessionType(rawValue: sessionData.type) else {
             print("not implemented")
             return
@@ -66,20 +67,15 @@ extension StandbyViewModel: MultiPeerConnectionDelegate {
         switch sessionType {
         case .kickedFromRoom:
             // 部屋から強制退出
-            if sessionData.roomNumber == self.roomNumber {
-                DispatchQueue.main.async {
-                    self.dependency.alertWireframe.showSingleAlert(title: "部屋からキックされました", message: "") { _ in
-                        self.dependency.wireframe.backToFirstScreen()
-                    }
+            DispatchQueue.main.async {
+                self.dependency.alertWireframe.showSingleAlert(title: "部屋からキックされました", message: "") { _ in
+                    self.dependency.wireframe.backToFirstScreen()
                 }
             }
         case .startQuiz:
             // クイズが開始した時
-            if sessionData.roomNumber == self.roomNumber {
-                // 同じ部屋の人がクイズを開始した時
-                DispatchQueue.main.async {
-                    self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService, roomNumber: self.roomNumber)
-                }
+            DispatchQueue.main.async {
+                self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService)
             }
         default:
             print("not implemented")

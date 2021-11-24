@@ -12,12 +12,8 @@ import InstantiateStandard
 
 class EntranceWireframe: Wireframe {
     
-    func toStandbyScreen(_ multiPeerConnectionService: MultiPeerConnectionService, roomNumber: Int) {
-        let dependency = (
-            multiPeerConnectionService,
-            roomNumber
-        )
-        let standbyVC = StandbyViewController(with: dependency)
+    func toStandbyScreen(_ multiPeerConnectionService: MultiPeerConnectionService) {
+        let standbyVC = StandbyViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(standbyVC, animated: true)
     }
 }
