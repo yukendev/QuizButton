@@ -12,13 +12,9 @@ import InstantiateStandard
 
 extension StandbyViewController: StoryboardInstantiatable {
     // sessionを共有するために前の画面と同じMultiPeerConnectionServiceを使う
-    typealias Dependency = (
-        multiPeerConnectionService: MultiPeerConnectionService,
-        roomNumber: Int
-    )
+    typealias Dependency = MultiPeerConnectionService
     func inject(_ dependency: Dependency) {
-        multiPeerConnectionService = dependency.multiPeerConnectionService
-        roomNumber = dependency.roomNumber
+        multiPeerConnectionService = dependency
     }
 }
 
@@ -35,8 +31,6 @@ class StandbyViewController: UIViewController {
     
     private var multiPeerConnectionService: MultiPeerConnectionService!
     
-    private var roomNumber: Int!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,8 +40,9 @@ class StandbyViewController: UIViewController {
                 AlertWireframe(self),
                 multiPeerConnectionService
             ),
-            leaveButtonTap: leaveButton.rx.tap.asSignal(),
-            roomNumber: roomNumber
+            leaveButtonTap: leaveButton.rx.tap.asSignal()
         )
+        
+        self.navigationItem.hidesBackButton = true
     }
 }

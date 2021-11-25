@@ -27,6 +27,8 @@ class EntranceViewModel: NSObject {
 
     var roomNumberText = BehaviorRelay<String>(value: "")
     
+    let UD = UserDefaultService.shared
+    
     init(dependency: Dependency, sendButtonTap: Signal<Void>) {
         
         self.dependency = dependency
@@ -82,8 +84,14 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
         switch sessionType {
         case .roomNumberApproval:
             // 部屋番号が承認された時
+            // UDにroomNumberをセット
+            do {
+                try UD.setRoomNumber(sessionData.roomNumber)
+            } catch let error {
+                QBLogger.error(error)
+            }
             DispatchQueue.main.async {
-                self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService, roomNumber: sessionData.roomNumber)
+                self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService)
             }
         case .roomNumberReject:
             // 部屋番号が拒否された時

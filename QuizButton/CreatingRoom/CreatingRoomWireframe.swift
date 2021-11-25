@@ -8,12 +8,8 @@
 import Foundation
 
 class CreatingRoomWireframe: Wireframe {
-    func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService, roomNumber: Int) {
-        let dependency = (
-            multiPeerConnectionService,
-            roomNumber
-        )
-        let quizVC = QuizViewController(with: dependency)
+    func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService) {
+        let quizVC = QuizViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(quizVC, animated: true)
     }
 }

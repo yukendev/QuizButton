@@ -23,6 +23,11 @@ class CreatingRoomViewModel: NSObject {
     )
     private let dependency: Dependency
     
+    typealias Input = (
+        startButtonTap: Signal<Void>,
+        dissolveButtonTap: Signal<Void>
+    )
+    
     
     let disposeBag = DisposeBag()
     
@@ -36,12 +41,10 @@ class CreatingRoomViewModel: NSObject {
     var numberOfStandbyMember: Driver<Int>
     private let numberOfStandbyMemberRelay: BehaviorRelay<Int>
     
+    let UD = UserDefaultService.shared
     
-    var roomNumber: Int
-    
-    init(dependency: Dependency, startButtonTap: Signal<Void>, roomNumber: Int) {
+    init(dependency: Dependency, input: Input) {
         
-        self.roomNumber = roomNumber
         self.memberUpdateRelay = BehaviorRelay(value: ())
         self.memberUpdated = memberUpdateRelay.asDriver()
         
@@ -56,25 +59,42 @@ class CreatingRoomViewModel: NSObject {
         
         self.dataSource = CreatingRoomDataSource()
         
+        // セルタップ時の処理
         self.dataSource.didSelectRow.subscribe(onNext: { [weak self] peerID in
-            self?.dependency.alertWireframe.showDoubleAlert(
+            guard let `self` = self else { return }
+            self.dependency.alertWireframe.showDoubleAlert(
                 title: "\(peerID.displayName)さんを退出させますか?",
                 message: "",
                 completion: { _ in
-                    self?.deleteStandbyMember(peerID)
-                    let sessionData = SessionData(type: .kickedFromRoom, roomNumber: roomNumber)
-                    self?.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [peerID])
+                    self.deleteStandbyMember(peerID)
+                    let sessionData = SessionData(type: .kickedFromRoom, roomNumber: self.UD.roomNumber)
+                    self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [peerID])
                 })
         }).disposed(by: disposeBag)
         
-        startButtonTap.emit(onNext: { _ in
-            if !self.standbyMember.isEmpty {
-                let sessionData = SessionData(type: .startQuiz, roomNumber: roomNumber)
-                self.dependency.multiPeerConnectionService.sendData(sessionData)
-                self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService, roomNumber: roomNumber)
-            } else {
-                self.dependency.alertWireframe.showSingleAlert(title: "メンバーがいません", message: "", completion: nil)
+        
+        input.dissolveButtonTap.emit(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            self.dependency.alertWireframe.showDoubleAlert(title: "部屋を解散します。よろしいですか？", message: "") { _ in
+                let sessionData = SessionData(type: .kickedFromRoom, roomNumber: self.UD.roomNumber)
+                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
+                self.dependency.wireframe.backToFirstScreen()
             }
+        }).disposed(by: disposeBag)
+        
+        input.startButtonTap.emit(onNext: { _ in
+            
+            if self.standbyMember.isEmpty {
+                return self.dependency.alertWireframe.showSingleAlert(title: "メンバーがいません", message: "", completion: nil)
+            }
+            
+            self.dependency.alertWireframe.showDoubleAlert(title: "クイズを開始します。よろしいですか？", message: "") { _ in
+                let sessionData = SessionData(type: .startQuiz, roomNumber: self.UD.roomNumber)
+                self.dependency.multiPeerConnectionService.sendData(sessionData)
+                self.dependency.wireframe.toQuizScreen(self.dependency.multiPeerConnectionService)
+            }
+            
+            
         }).disposed(by: disposeBag)
         
     }
@@ -121,15 +141,15 @@ extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
         }
         switch sessionType {
         case .roomNumberRequest:
-            if sessionData.roomNumber == self.roomNumber {
+            if sessionData.roomNumber == self.UD.roomNumber {
                 // 部屋番号承認
-                let sessionData = SessionData(type: SessionType.roomNumberApproval, roomNumber: self.roomNumber)
+                let sessionData = SessionData(type: SessionType.roomNumberApproval, roomNumber: self.UD.roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
                 // TODO: 待機中のメンバーに追加
                 self.addStandbyMember(fromPeer)
             } else {
                 // 部屋番号拒否
-                let sessionData = SessionData(type: SessionType.roomNumberReject, roomNumber: self.roomNumber)
+                let sessionData = SessionData(type: SessionType.roomNumberReject, roomNumber: self.UD.roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
             }
         default:
