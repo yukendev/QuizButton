@@ -27,6 +27,8 @@ class EntranceViewModel: NSObject {
 
     var roomNumberText = BehaviorRelay<String>(value: "")
     
+    let UD = UserDefaultService.shared
+    
     init(dependency: Dependency, sendButtonTap: Signal<Void>) {
         
         self.dependency = dependency
@@ -43,6 +45,7 @@ class EntranceViewModel: NSObject {
                 }
                 let sessionData = SessionData(type: SessionType.roomNumberRequest, roomNumber: roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData)
+                // TODO: 部屋番号送って誰からも反応がなかった時の処理
             } else {
                 self.dependency.alrtWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
             }
@@ -82,8 +85,14 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
         switch sessionType {
         case .roomNumberApproval:
             // 部屋番号が承認された時
+            // UDにroomNumberをセット
+            do {
+                try UD.setRoomNumber(sessionData.roomNumber)
+            } catch let error {
+                QBLogger.error(error)
+            }
             DispatchQueue.main.async {
-                self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService, roomNumber: sessionData.roomNumber)
+                self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService)
             }
         case .roomNumberReject:
             // 部屋番号が拒否された時
@@ -91,7 +100,7 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
                 self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "", completion: nil)
             }
         default:
-            print("not implemented")
+            break
         }
     }
 }

@@ -17,6 +17,11 @@
 		45597B1F274A84A5003385C5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45597B1E274A84A5003385C5 /* QuizViewController.swift */; };
 		45597B21274A84C3003385C5 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45597B20274A84C3003385C5 /* QuizViewModel.swift */; };
 		45597B23274A84CE003385C5 /* QuizWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45597B22274A84CE003385C5 /* QuizWireframe.swift */; };
+		459BD93C274B254B001017D5 /* AnsweringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459BD93B274B254B001017D5 /* AnsweringView.swift */; };
+		459BD93E274B255B001017D5 /* AnsweringView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 459BD93D274B255B001017D5 /* AnsweringView.xib */; };
+		459BD940274BBF74001017D5 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459BD93F274BBF74001017D5 /* UserDefaultService.swift */; };
+		459BD945274BCF89001017D5 /* QBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459BD944274BCF89001017D5 /* QBError.swift */; };
+		459BD948274BD123001017D5 /* QBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459BD947274BD123001017D5 /* QBLogger.swift */; };
 		45A9DE35273AA8820051DA7E /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45A9DE34273AA8820051DA7E /* HomeViewController.storyboard */; };
 		45A9DE37273AA8A10051DA7E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE36273AA8A10051DA7E /* HomeViewController.swift */; };
 		45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A9DE38273AABE30051DA7E /* HomeViewModel.swift */; };
@@ -77,6 +82,11 @@
 		45597B1E274A84A5003385C5 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		45597B20274A84C3003385C5 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		45597B22274A84CE003385C5 /* QuizWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWireframe.swift; sourceTree = "<group>"; };
+		459BD93B274B254B001017D5 /* AnsweringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnsweringView.swift; sourceTree = "<group>"; };
+		459BD93D274B255B001017D5 /* AnsweringView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnsweringView.xib; sourceTree = "<group>"; };
+		459BD93F274BBF74001017D5 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		459BD944274BCF89001017D5 /* QBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBError.swift; sourceTree = "<group>"; };
+		459BD947274BD123001017D5 /* QBLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBLogger.swift; sourceTree = "<group>"; };
 		45A9DE34273AA8820051DA7E /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
 		45A9DE36273AA8A10051DA7E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		45A9DE38273AABE30051DA7E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				454B185D2747DDBC005F35B2 /* MultiPeerConnectionService.swift */,
+				459BD93F274BBF74001017D5 /* UserDefaultService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 		45597B1B274A847A003385C5 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
+				459BD93A274B2521001017D5 /* AnsweringView */,
 				45597B1C274A848D003385C5 /* QuizViewController.storyboard */,
 				45597B1E274A84A5003385C5 /* QuizViewController.swift */,
 				45597B20274A84C3003385C5 /* QuizViewModel.swift */,
@@ -183,6 +195,31 @@
 				45C642182747978B00379FFA /* SessionData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		459BD93A274B2521001017D5 /* AnsweringView */ = {
+			isa = PBXGroup;
+			children = (
+				459BD93B274B254B001017D5 /* AnsweringView.swift */,
+				459BD93D274B255B001017D5 /* AnsweringView.xib */,
+			);
+			path = AnsweringView;
+			sourceTree = "<group>";
+		};
+		459BD941274BCCAF001017D5 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				459BD944274BCF89001017D5 /* QBError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		459BD946274BD112001017D5 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				459BD947274BD123001017D5 /* QBLogger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		45A9DE33273AA7C50051DA7E /* Home */ = {
@@ -266,6 +303,8 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				459BD946274BD112001017D5 /* Logger */,
+				459BD941274BCCAF001017D5 /* Error */,
 				45597B1B274A847A003385C5 /* Quiz */,
 				45C3E8EF27473C0E00FB9566 /* Standby */,
 				45A9DE43273ABE060051DA7E /* Entrance */,
@@ -426,6 +465,7 @@
 				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
 				45597B1D274A848D003385C5 /* QuizViewController.storyboard in Resources */,
 				45A9DE40273ABDE70051DA7E /* CreatingRoomViewController.storyboard in Resources */,
+				459BD93E274B255B001017D5 /* AnsweringView.xib in Resources */,
 				45C3E8F127473C2100FB9566 /* StandbyViewController.storyboard in Resources */,
 				45A9DE35273AA8820051DA7E /* HomeViewController.storyboard in Resources */,
 			);
@@ -557,6 +597,7 @@
 			files = (
 				453AEA08273B5C190093951A /* EntranceWireframe.swift in Sources */,
 				45597B23274A84CE003385C5 /* QuizWireframe.swift in Sources */,
+				459BD93C274B254B001017D5 /* AnsweringView.swift in Sources */,
 				45597B21274A84C3003385C5 /* QuizViewModel.swift in Sources */,
 				45C3E8F527473C3A00FB9566 /* StandbyViewModel.swift in Sources */,
 				45C6421127477CC900379FFA /* CreatingRoomDataSource.swift in Sources */,
@@ -574,8 +615,11 @@
 				454B185E2747DDBC005F35B2 /* MultiPeerConnectionService.swift in Sources */,
 				453AEA04273B5BD30093951A /* CreatingRoomViewModel.swift in Sources */,
 				45A9DE39273AABE30051DA7E /* HomeViewModel.swift in Sources */,
+				459BD948274BD123001017D5 /* QBLogger.swift in Sources */,
 				45C642192747978B00379FFA /* SessionData.swift in Sources */,
 				453AEA06273B5C0D0093951A /* CreatingRoomWireframe.swift in Sources */,
+				459BD945274BCF89001017D5 /* QBError.swift in Sources */,
+				459BD940274BBF74001017D5 /* UserDefaultService.swift in Sources */,
 				45A9DE47273ABE220051DA7E /* EntranceViewController.swift in Sources */,
 				45C6421427477DC700379FFA /* CreatingRoomTableViewCell.swift in Sources */,
 				45A9DE3D273ABC320051DA7E /* HomeWireframe.swift in Sources */,

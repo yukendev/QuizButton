@@ -20,6 +20,7 @@ enum SessionType: String {
     
     case roomDeleted // 部屋の解散
     
-    case quizAnswer // 誰かが早押しボタンを押した
+    case quizStartAnswer // 誰かが早押しボタンを押した(解答を開始)
+    case quizFinishAnswer // 誰かが解答を終了
     
 }

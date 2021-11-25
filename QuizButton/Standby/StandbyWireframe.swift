@@ -9,12 +9,11 @@ import Foundation
 
 
 class StandbyWireframe: Wireframe {
-    func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService, roomNumber: Int) {
-        let dependency = (
-            multiPeerConnectionService,
-            roomNumber
-        )
-        let quizVC = QuizViewController(with: dependency)
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService) {
+        let quizVC = QuizViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(quizVC, animated: true)
     }
 }

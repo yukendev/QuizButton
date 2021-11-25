@@ -48,11 +48,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgQ-tf-hMJ">
+                                <rect key="frame" x="310" y="60" width="82" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="解散する"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="dissolveButton" destination="zgQ-tf-hMJ" id="Lax-DM-vU5"/>
                         <outlet property="quizStartButton" destination="p6B-F8-bnA" id="j98-Vt-2at"/>
                         <outlet property="roomNumberLabel" destination="bOR-dy-B4P" id="FS4-8w-vIh"/>
                         <outlet property="standbyMemberLabel" destination="Aez-rT-zyb" id="CeQ-6K-zJK"/>
