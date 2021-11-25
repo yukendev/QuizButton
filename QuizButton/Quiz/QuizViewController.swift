@@ -20,8 +20,9 @@ extension QuizViewController: StoryboardInstantiatable {
 }
 
 class QuizViewController: UIViewController {
-    
-    
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
     @IBOutlet weak var quizButton: UIButton!
     @IBOutlet weak var leaveButton: UIButton!
     

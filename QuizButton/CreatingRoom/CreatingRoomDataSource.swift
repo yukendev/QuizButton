@@ -13,6 +13,9 @@ import RxSwift
 
 
 final class CreatingRoomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
     
     var member: [MCPeerID] = []
     

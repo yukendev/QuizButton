@@ -10,7 +10,6 @@ import MultipeerConnectivity
 
 class CreatingRoomTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var nameLabel: UILabel!
     var member: MCPeerID?
     
