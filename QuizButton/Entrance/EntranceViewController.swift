@@ -17,7 +17,7 @@ class EntranceViewController: UIViewController {
     
     
     @IBOutlet weak var roomNumberTextField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var sendButton: QBButton!
     
     private var viewModel: EntranceViewModel!
     
@@ -39,6 +39,11 @@ class EntranceViewController: UIViewController {
             .bind(to: viewModel.roomNumberText)
             .disposed(by: disposeBag)
         
+    }
+    
+    // 画面タップ時の処理
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 

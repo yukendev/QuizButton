@@ -16,28 +16,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HWh-sv-CX9">
-                                <rect key="frame" x="92" y="213" width="231" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HWh-sv-CX9">
+                                <rect key="frame" x="71" y="314" width="272" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="272" id="1hg-X8-J0P"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhO-JQ-CLk">
-                                <rect key="frame" x="158" y="359" width="98" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhO-JQ-CLk" customClass="QBButton" customModule="QuizButton" customModuleProvider="target">
+                                <rect key="frame" x="153" y="428" width="108" height="40"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.27843137254901962" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="W13-J3-DGN"/>
+                                    <constraint firstAttribute="height" constant="40" id="bL6-x5-K2K"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="決定"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4桁の部屋番号を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-Ta-UbV">
-                                <rect key="frame" x="72" y="153" width="271" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4桁の部屋番号を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-Ta-UbV">
+                                <rect key="frame" x="71.5" y="213.5" width="271.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.92156862745098034" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HWh-sv-CX9" firstAttribute="top" secondItem="ClU-Ta-UbV" secondAttribute="bottom" constant="80" id="8SL-W6-qzy"/>
+                            <constraint firstItem="ZhO-JQ-CLk" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Irx-B6-Qez"/>
+                            <constraint firstItem="ClU-Ta-UbV" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ZIQ-6e-o2d"/>
+                            <constraint firstItem="ZhO-JQ-CLk" firstAttribute="top" secondItem="HWh-sv-CX9" secondAttribute="bottom" constant="80" id="baX-oC-fZG"/>
+                            <constraint firstItem="ZhO-JQ-CLk" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="cTn-YC-cmN"/>
+                            <constraint firstItem="HWh-sv-CX9" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xNt-Z1-T3Y"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="roomNumberTextField" destination="HWh-sv-CX9" id="p2r-Q6-7zf"/>
