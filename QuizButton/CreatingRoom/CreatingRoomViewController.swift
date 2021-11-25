@@ -45,7 +45,6 @@ class CreatingRoomViewController: UIViewController {
         // 部屋番号をラベルに表示
         roomNumberLabel.text = String(UD.roomNumber)
         
-        
         viewModel = CreatingRoomViewModel(
             dependency: (
                 CreatingRoomWireframe(self),

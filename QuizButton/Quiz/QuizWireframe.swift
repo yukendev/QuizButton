@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 class QuizWireframe: Wireframe {
+    
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
         
     func showAnsweringScreen(answeringType: AnsweringType, answeringView: AnsweringView) {
         answeringView.frame = CGRect(x: 0, y: 0, width: (self.viewController?.view.frame.width)!, height: (self.viewController?.view.frame.height)!)

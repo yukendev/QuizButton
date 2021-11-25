@@ -12,6 +12,10 @@ import InstantiateStandard
 
 class EntranceWireframe: Wireframe {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     func toStandbyScreen(_ multiPeerConnectionService: MultiPeerConnectionService) {
         let standbyVC = StandbyViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(standbyVC, animated: true)

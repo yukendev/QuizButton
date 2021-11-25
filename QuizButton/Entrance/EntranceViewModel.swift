@@ -45,6 +45,7 @@ class EntranceViewModel: NSObject {
                 }
                 let sessionData = SessionData(type: SessionType.roomNumberRequest, roomNumber: roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData)
+                // TODO: 部屋番号送って誰からも反応がなかった時の処理
             } else {
                 self.dependency.alrtWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
             }
@@ -99,7 +100,7 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
                 self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "", completion: nil)
             }
         default:
-            print("not implemented")
+            break
         }
     }
 }

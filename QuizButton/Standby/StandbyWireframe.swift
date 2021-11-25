@@ -9,6 +9,9 @@ import Foundation
 
 
 class StandbyWireframe: Wireframe {
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
     func toQuizScreen(_ multiPeerConnectionService: MultiPeerConnectionService) {
         let quizVC = QuizViewController(with: multiPeerConnectionService)
         viewController?.navigationController?.pushViewController(quizVC, animated: true)

@@ -153,7 +153,6 @@ extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
                 self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
             }
         default:
-            print("not implemented")
             break
         }
     }

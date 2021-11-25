@@ -13,6 +13,10 @@ import MultipeerConnectivity
 
 class QuizViewModel: NSObject {
     
+    deinit {
+        print("deinit: \(type(of: self))")
+    }
+    
     typealias Dependency = (
         wireframe: QuizWireframe,
         alertWireframe: AlertWireframe,
@@ -97,20 +101,24 @@ extension QuizViewModel: MultiPeerConnectionDelegate {
         }
         switch sessionType {
         case .roomDeleted:
-            // 部屋の強制解散
-            self.dependency.alertWireframe.showSingleAlert(title: "部屋が解散されました", message: "") { _ in
-                self.dependency.wireframe.backToFirstScreen()
+            // 部屋が強制解散された時
+            DispatchQueue.main.async {
+                self.dependency.alertWireframe.showSingleAlert(title: "部屋が解散されました", message: "") { _ in
+                    self.dependency.wireframe.backToFirstScreen()
+                }
             }
         case .quizStartAnswer:
+            // 誰かがボタンを押した時
             DispatchQueue.main.async {
                 self.dependency.wireframe.showAnsweringScreen(answeringType: .others, answeringView: self.answeringView)
             }
         case .quizFinishAnswer:
+            // 誰かが解答を終了した時
             DispatchQueue.main.async {
                 self.answeringView.removeFromSuperview()
             }
         default:
-            print("not implemented")
+            break
         }
     }
 }
