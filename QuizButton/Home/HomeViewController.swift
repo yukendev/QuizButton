@@ -11,8 +11,8 @@ import RxCocoa
 class HomeViewController: UIViewController {
     
     
-    @IBOutlet weak var createRoomButton: UIButton!
-    @IBOutlet weak var enterRoomButton: UIButton!
+    @IBOutlet weak var createRoomButton: QBButton!
+    @IBOutlet weak var enterRoomButton: QBButton!
     
     private var viewModel: HomeViewModel!
 
@@ -25,8 +25,5 @@ class HomeViewController: UIViewController {
                 enterRoomButton.rx.tap.asSignal()
             ), wireframe: HomeWireframe(self)
         )
-        
-        
     }
-
 }
