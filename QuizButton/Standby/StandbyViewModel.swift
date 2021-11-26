@@ -36,7 +36,9 @@ class StandbyViewModel: NSObject {
         self.dependency.multiPeerConnectionService.delegate = self
         
         leaveButtonTap.emit(onNext: { _ in
-            self.dependency.wireframe.backToFirstScreen()
+            self.dependency.alertWireframe.showDoubleAlert(title: "部屋を退出します。よろしいですか？", message: "") { _ in
+                self.dependency.wireframe.backToFirstScreen()
+            }
         }).disposed(by: disposeBag)
     }
 }
