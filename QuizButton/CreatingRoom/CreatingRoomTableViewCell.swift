@@ -10,9 +10,10 @@ import MultipeerConnectivity
 
 class CreatingRoomTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     var member: MCPeerID?
-    
+
     private func updateObject() {
         guard let member = member else {
             return
