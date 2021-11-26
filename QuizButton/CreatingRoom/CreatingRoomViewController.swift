@@ -17,7 +17,7 @@ class CreatingRoomViewController: UIViewController {
     
     @IBOutlet weak var dissolveButton: UIButton!
     @IBOutlet weak var roomNumberLabel: UILabel!
-    @IBOutlet weak var quizStartButton: UIButton!
+    @IBOutlet weak var quizStartButton: QBButton!
     @IBOutlet weak var standbyMemberLabel: UILabel!
     @IBOutlet weak var tableView: UITableView! {
         didSet {

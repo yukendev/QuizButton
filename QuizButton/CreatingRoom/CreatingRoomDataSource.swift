@@ -35,8 +35,10 @@ final class CreatingRoomDataSource: NSObject, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreatingRoomTableViewCell", for: indexPath) as! CreatingRoomTableViewCell
-        cell.setData(member[indexPath.row])
+        cell.setData(member[indexPath.row]) // ラベルの文字を設定
         cell.selectionStyle = .none
+        cell.containerView.layer.cornerRadius = 10
+        cell.containerView.layer.masksToBounds = true
         return cell
     }
     
