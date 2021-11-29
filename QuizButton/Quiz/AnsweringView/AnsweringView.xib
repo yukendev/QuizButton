@@ -10,35 +10,79 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnsweringView" customModule="QuizButton" customModuleProvider="target">
             <connections>
-                <outlet property="answeringButton" destination="BbA-Mp-t3X" id="5ou-I2-CK2"/>
                 <outlet property="answeringLabel" destination="WgD-cF-BDS" id="XRu-of-M3s"/>
+                <outlet property="finishAnswerButton" destination="a4h-5w-SI5" id="olA-Bw-SKG"/>
+                <outlet property="leaveRoomButton" destination="tXb-Rc-eZm" id="fgC-5v-2od"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view alpha="0.5" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgD-cF-BDS">
-                    <rect key="frame" x="20" y="172" width="374" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" systemColor="systemBackgroundColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbA-Mp-t3X">
-                    <rect key="frame" x="20" y="396" width="374" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="tintColor" systemColor="systemBackgroundColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    <connections>
-                        <action selector="answeringButtonTap:" destination="-1" eventType="touchUpInside" id="S1u-Eh-JnZ"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="175" translatesAutoresizingMaskIntoConstraints="NO" id="Zsa-iF-oqH">
+                    <rect key="frame" x="20" y="254" width="374" height="388"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgD-cF-BDS">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" systemColor="systemBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="82" translatesAutoresizingMaskIntoConstraints="NO" id="KcX-Ba-98t">
+                            <rect key="frame" x="37" y="204" width="300" height="184"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4h-5w-SI5" customClass="QBButton" customModule="QuizButton" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                    <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="70" id="8cC-pY-5GC"/>
+                                        <constraint firstAttribute="width" constant="300" id="ljG-TL-Aie"/>
+                                    </constraints>
+                                    <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="回答を終了する">
+                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="answeringButtonTap:" destination="-1" eventType="touchUpInside" id="SXT-hH-NB8"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXb-Rc-eZm">
+                                    <rect key="frame" x="75" y="152" width="150" height="32"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain">
+                                        <attributedString key="attributedTitle">
+                                            <fragment content="部屋を退出する">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="18" name="HiraginoSans-W3"/>
+                                                    <integer key="NSUnderline" value="1"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="answeringButtonTap:" destination="-1" eventType="touchUpInside" id="tci-Ec-U7Y"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="WgD-cF-BDS" secondAttribute="trailing" id="BJL-MI-Hje"/>
+                        <constraint firstItem="WgD-cF-BDS" firstAttribute="leading" secondItem="Zsa-iF-oqH" secondAttribute="leading" id="nN0-iq-EBc"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Zsa-iF-oqH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="JrJ-Us-NOI"/>
+                <constraint firstItem="Zsa-iF-oqH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UlT-Lb-4rm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zsa-iF-oqH" secondAttribute="trailing" constant="20" id="k3M-3G-ZcU"/>
+                <constraint firstItem="Zsa-iF-oqH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ok8-KQ-Jmf"/>
+            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
         </view>
     </objects>
