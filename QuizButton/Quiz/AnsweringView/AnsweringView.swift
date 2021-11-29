@@ -23,7 +23,9 @@ enum AnsweringType {
 class AnsweringView: UIView {
     
     @IBOutlet weak var answeringLabel: UILabel!
-    @IBOutlet weak var answeringButton: UIButton!
+    
+    @IBOutlet weak var finishAnswerButton: QBButton!
+    @IBOutlet weak var leaveRoomButton: UIButton!
     
     private var answeringType: AnsweringType!
     
@@ -56,10 +58,12 @@ class AnsweringView: UIView {
         switch answeringType {
         case .answer:
             self.answeringLabel.text = "あなたが回答者です"
-            self.answeringButton.setTitle("回答終了", for: .normal)
+            self.finishAnswerButton.isHidden = false
+            self.leaveRoomButton.isHidden = true
         case .others:
             self.answeringLabel.text = "他の人が回答しています"
-            self.answeringButton.setTitle("部屋を退出する", for: .normal)
+            self.finishAnswerButton.isHidden = true
+            self.leaveRoomButton.isHidden = false
         }
     }
     

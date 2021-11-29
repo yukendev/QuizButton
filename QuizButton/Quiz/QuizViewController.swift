@@ -26,6 +26,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var quizButton: UIButton!
     @IBOutlet weak var leaveButton: UIButton!
     
+    @IBOutlet weak var buttonOutsideView: UIView!
     
     private var viewModel: QuizViewModel!
     
@@ -37,6 +38,9 @@ class QuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.buttonOutsideView.layer.cornerRadius = 120
+        self.quizButton.layer.cornerRadius = 90
                 
         self.viewModel = QuizViewModel(
             dependency: (
@@ -50,8 +54,20 @@ class QuizViewController: UIViewController {
             )
         )
         
+        
         self.navigationItem.hidesBackButton = true
         
+    }
+    
+    @IBAction func quizButtonAnimation(_ sender: Any) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.quizButton.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }) { (_) in
+            UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
+                self.quizButton.transform = .identity
+                
+            }, completion: nil)
+        }
     }
     
 
