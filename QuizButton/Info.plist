@@ -8,7 +8,7 @@
 		<string>_QuizButton._udp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>早押しボタンの機能を使うために近くの人との通信が必要だから</string>
+	<string>このAppで、使用中のネットワーク上のデバイスの検索および接続ができるようになります。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
