@@ -41,9 +41,9 @@
 		45C6421527477DC700379FFA /* CreatingRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45C6421327477DC700379FFA /* CreatingRoomTableViewCell.xib */; };
 		45C642172747969500379FFA /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C642162747969400379FFA /* SessionType.swift */; };
 		45C642192747978B00379FFA /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C642182747978B00379FFA /* SessionData.swift */; };
+		45D6AA192758A40800F41F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB073273AA69500361BDD /* Assets.xcassets */; };
 		45DEB06B273AA69300361BDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06A273AA69300361BDD /* AppDelegate.swift */; };
 		45DEB06D273AA69300361BDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB06C273AA69300361BDD /* SceneDelegate.swift */; };
-		45DEB074273AA69500361BDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB073273AA69500361BDD /* Assets.xcassets */; };
 		45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DEB075273AA69500361BDD /* LaunchScreen.storyboard */; };
 		45DEB082273AA69600361BDD /* QuizButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB081273AA69600361BDD /* QuizButtonTests.swift */; };
 		45DEB08C273AA69600361BDD /* QuizButtonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB08B273AA69600361BDD /* QuizButtonUITests.swift */; };
@@ -473,11 +473,11 @@
 				45C6421527477DC700379FFA /* CreatingRoomTableViewCell.xib in Resources */,
 				45A9DE45273ABE160051DA7E /* EntranceViewController.storyboard in Resources */,
 				45DEB077273AA69500361BDD /* LaunchScreen.storyboard in Resources */,
-				45DEB074273AA69500361BDD /* Assets.xcassets in Resources */,
 				45597B1D274A848D003385C5 /* QuizViewController.storyboard in Resources */,
 				45A9DE40273ABDE70051DA7E /* CreatingRoomViewController.storyboard in Resources */,
 				459BD93E274B255B001017D5 /* AnsweringView.xib in Resources */,
 				45C3E8F127473C2100FB9566 /* StandbyViewController.storyboard in Resources */,
+				45D6AA192758A40800F41F80 /* Assets.xcassets in Resources */,
 				45A9DE35273AA8820051DA7E /* HomeViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,7 +822,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -850,7 +850,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
