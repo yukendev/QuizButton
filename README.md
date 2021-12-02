@@ -20,3 +20,33 @@ Hi, welcome to this repository.
 
 ## Licence
 This project is under MIT licence
+
+
+### コミットメッセージ
+
+[**Emoji Prefix**を導入して楽しくコミットメッセージを書こう](https://qiita.com/Jung0/items/0a9a7a97a2c17f92d3c5)
+
+|                          type                          |   emoji    |
+| :----------------------------------------------------: | :--------: |
+|           初めてのコミット（Initial Commit）           |     🎉     |
+|             バージョンタグ（Version Tag）              |     🔖     |
+|                 新機能（New Feature）                  |     ✨     |
+|                   バグ修正（Bugfix）                   |     🐛     |
+|                hotfix(Critical hotfix)                 |     🚑️     |
+|             リファクタリング(Refactoring)              |     ♻️     |
+|             ドキュメント（Documentation）              |     📚     |
+|              デザインUI/UX(Accessibility)              |     🎨     |
+|             パフォーマンス（Performance）              |     🐎     |
+|                   ツール（Tooling）                    |     🔧     |
+|                    テスト（Tests）                     |     🚨     |
+|               非推奨追加（Deprecation）                |     💩     |
+|                    削除（Removal）                     |     🗑️     |
+|                 WIP(Work In Progress)                  |     🚧     |
+|             仕様変更(Specification Change)             |     ✏️     |
+|                 マージ(Merge branches)                 |     🔀     |
+|           コミットの取り消し(Revert changes)           |     ⏪️     |
+| ライブラリー(Add or update compiled files or packages) |     📦️     |
+|     ドキュメント編集(Add or update documentation.)     |     📝     |
+|             iOSサポートバージョンを上げる              |     ⬆️     |
+|                                                        |            |
+|                                                        |            |
