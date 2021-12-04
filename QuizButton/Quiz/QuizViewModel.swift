@@ -59,19 +59,9 @@ class QuizViewModel: NSObject {
         
         // 退出ボタン
         input.leaveButtonTap.emit(onNext: { _ in
-            switch self.dependency.multiPeerConnectionService.multiPeerType {
-            case .host:
-                self.dependency.alertWireframe.showDoubleAlert(title: "部屋を解散します。よろしいですか？", message: "") { _ in
-                    let sessionData = SessionData(type: .roomDeleted, roomNumber: self.UD.roomNumber)
-                    self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
-                    self.dependency.wireframe.backToFirstScreen()
-                }
-            case .guest:
-                self.dependency.alertWireframe.showDoubleAlert(title: "部屋を退出します。よろしいですか？", message: "") { _ in
-                    self.dependency.wireframe.backToFirstScreen()
-                }
+            self.dependency.alertWireframe.showDoubleAlert(title: "部屋を退出します。よろしいですか？", message: "") { _ in
+                self.dependency.wireframe.backToFirstScreen()
             }
-            self.dependency.wireframe.backToFirstScreen()
         }).disposed(by: disposeBag)
     }
 }
