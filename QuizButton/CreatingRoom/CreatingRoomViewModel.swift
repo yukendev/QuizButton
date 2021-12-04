@@ -147,10 +147,6 @@ extension CreatingRoomViewModel: MultiPeerConnectionDelegate {
                 self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
                 // TODO: 待機中のメンバーに追加
                 self.addStandbyMember(fromPeer)
-            } else {
-                // 部屋番号拒否
-                let sessionData = SessionData(type: SessionType.roomNumberReject, roomNumber: self.UD.roomNumber)
-                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: [fromPeer])
             }
         default:
             break
