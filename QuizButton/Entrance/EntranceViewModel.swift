@@ -18,12 +18,19 @@ class EntranceViewModel: NSObject {
     
     typealias Dependency = (
         wireframe: EntranceWireframe,
-        alrtWireframe: AlertWireframe,
+        alertWireframe: AlertWireframe,
         multiPeerConnectionService: MultiPeerConnectionService
     )
     private let dependency: Dependency
     
     let disposeBag = DisposeBag()
+    
+    // 承認データ受信フラグ
+    private var isReceivedApproval: Bool = false
+    
+    // インジケーター
+    let isInProgress: Driver<Bool>
+    private let isInProgressRelay: BehaviorRelay = BehaviorRelay(value: false)
 
     var roomNumberText = BehaviorRelay<String>(value: "")
     
@@ -33,6 +40,8 @@ class EntranceViewModel: NSObject {
         
         self.dependency = dependency
         
+        self.isInProgress = isInProgressRelay.asDriver()
+        
         super.init()
         
         self.dependency.multiPeerConnectionService.delegate = self
@@ -41,13 +50,18 @@ class EntranceViewModel: NSObject {
             if self.isAppropriateRoomNumber(self.roomNumberText.value) {
                 // 部屋番号の送信
                 guard let roomNumber = Int(self.roomNumberText.value) else {
+                    self.dependency.alertWireframe.showSingleAlert(title: "エラーが発生しました", message: "") { _ in
+                        self.dependency.wireframe.backToFirstScreen()
+                    }
                     return
                 }
+                // 一定時間以内に部屋番号の承認が来なければアラート表示
+                self.showAlertAfterSecond(second: 3)
+                self.isInProgressRelay.accept(true)
                 let sessionData = SessionData(type: SessionType.roomNumberRequest, roomNumber: roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData)
-                // TODO: 部屋番号送って誰からも反応がなかった時の処理
             } else {
-                self.dependency.alrtWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
+                self.dependency.alertWireframe.showSingleAlert(title: "不適切な部屋番号です", message: "", completion: nil)
             }
         }).disposed(by: disposeBag)
     }
@@ -58,6 +72,19 @@ class EntranceViewModel: NSObject {
             return false
         }
         return 1000 <= roomNumber && roomNumber <= 9999
+    }
+    
+    // 一定時間後に部屋番号承認の通信が行われなければ、アラートを出す
+    private func showAlertAfterSecond(second: Double) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + second) {
+            // 承認データ受信フラグがtrueなら何もしない
+            self.isInProgressRelay.accept(false)
+            if !self.isReceivedApproval {
+                self.dependency.alertWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "") { _ in
+                    self.dependency.wireframe.backToFirstScreen()
+                }
+            }
+        }
     }
 }
 
@@ -82,9 +109,13 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
             print("not implemented")
             return
         }
+        // 承認
         switch sessionType {
         case .roomNumberApproval:
             // 部屋番号が承認された時
+            self.isInProgressRelay.accept(false)
+            // 承認データ受信フラグをtrueにする
+            self.isReceivedApproval = true
             // UDにroomNumberをセット
             do {
                 try UD.setRoomNumber(sessionData.roomNumber)
@@ -93,11 +124,6 @@ extension EntranceViewModel: MultiPeerConnectionDelegate {
             }
             DispatchQueue.main.async {
                 self.dependency.wireframe.toStandbyScreen(self.dependency.multiPeerConnectionService)
-            }
-        case .roomNumberReject:
-            // 部屋番号が拒否された時
-            DispatchQueue.main.async {
-                self.dependency.alrtWireframe.showSingleAlert(title: "部屋が見つかりませんでした", message: "", completion: nil)
             }
         default:
             break

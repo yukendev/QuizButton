@@ -12,7 +12,6 @@ enum SessionType: String {
     
     case roomNumberRequest // 部屋番号のリクエスト
     case roomNumberApproval // 部屋番号リクエストの承認
-    case roomNumberReject // 部屋番号リクエストの拒否
     
     case kickedFromRoom // 部屋に入った後にホストからキックされた場合
     
