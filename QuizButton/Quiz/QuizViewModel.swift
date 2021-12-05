@@ -31,6 +31,8 @@ class QuizViewModel: NSObject {
     private let dependency: Dependency
     
     private let disposeBag = DisposeBag()
+    
+    private var canSendData: Bool = true
         
     private let isHiddenAnsweringViewRelay: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let isHiddenAnsweringViewDriver: Driver<Bool>
@@ -51,10 +53,11 @@ class QuizViewModel: NSObject {
         
         // 解答ボタン
         input.quizButtonTap.emit(onNext: { _ in
-            // TODO: QuizButtonタップ処理
-            let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber)
-            self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
-            self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
+            if self.canSendData {
+                let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber)
+                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
+                self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
+            }
         }).disposed(by: disposeBag)
         
         // 退出ボタン
@@ -99,11 +102,13 @@ extension QuizViewModel: MultiPeerConnectionDelegate {
             }
         case .quizStartAnswer:
             // 誰かがボタンを押した時
+            self.canSendData = false
             DispatchQueue.main.async {
                 self.dependency.wireframe.showAnsweringScreen(answeringType: .others, answeringView: self.answeringView)
             }
         case .quizFinishAnswer:
             // 誰かが解答を終了した時
+            self.canSendData = true
             DispatchQueue.main.async {
                 self.answeringView.removeFromSuperview()
             }

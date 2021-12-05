@@ -49,7 +49,7 @@ class QuizViewController: UIViewController {
                 self.multiPeerConnectionService
             ),
             input: (
-                quizButton.rx.tap.asSignal(),
+                quizButton.rx.controlEvent(.touchDown).asSignal(),
                 leaveButton.rx.tap.asSignal()
             )
         )
