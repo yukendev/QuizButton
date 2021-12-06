@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32BBAA4E25DAAAC67BF5FA58 /* Pods_QuizButtonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEB141F49796E996BFA36D94 /* Pods_QuizButtonTests.framework */; };
+		45294881275E43430084EB3E /* Quiz-Buzzer02-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45294880275E43430084EB3E /* Quiz-Buzzer02-1.mp3 */; };
 		453AEA02273B5BBD0093951A /* EntranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA01273B5BBD0093951A /* EntranceViewModel.swift */; };
 		453AEA04273B5BD30093951A /* CreatingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA03273B5BD30093951A /* CreatingRoomViewModel.swift */; };
 		453AEA06273B5C0D0093951A /* CreatingRoomWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453AEA05273B5C0C0093951A /* CreatingRoomWireframe.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButtonTests.release.xcconfig"; path = "Target Support Files/Pods-QuizButtonTests/Pods-QuizButtonTests.release.xcconfig"; sourceTree = "<group>"; };
 		34562B8C1CBFB560EF3CDE33 /* Pods-QuizButton-QuizButtonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton-QuizButtonUITests.release.xcconfig"; path = "Target Support Files/Pods-QuizButton-QuizButtonUITests/Pods-QuizButton-QuizButtonUITests.release.xcconfig"; sourceTree = "<group>"; };
+		45294880275E43430084EB3E /* Quiz-Buzzer02-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quiz-Buzzer02-1.mp3"; sourceTree = "<group>"; };
 		453666EF274A4605002B7077 /* Pods_QuizButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_QuizButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		453AEA01273B5BBD0093951A /* EntranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntranceViewModel.swift; sourceTree = "<group>"; };
 		453AEA03273B5BD30093951A /* CreatingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingRoomViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +169,14 @@
 				241C976EFCC4B16C35D67754 /* Pods-QuizButtonTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		4529487F275E43260084EB3E /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				45294880275E43430084EB3E /* Quiz-Buzzer02-1.mp3 */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		454B185C2747DDAA005F35B2 /* Service */ = {
@@ -313,6 +323,7 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				4529487F275E43260084EB3E /* Sound */,
 				457C6EC3274FE0FA00A44C90 /* UI */,
 				459BD946274BD112001017D5 /* Logger */,
 				459BD941274BCCAF001017D5 /* Error */,
@@ -477,6 +488,7 @@
 				45A9DE40273ABDE70051DA7E /* CreatingRoomViewController.storyboard in Resources */,
 				459BD93E274B255B001017D5 /* AnsweringView.xib in Resources */,
 				45C3E8F127473C2100FB9566 /* StandbyViewController.storyboard in Resources */,
+				45294881275E43430084EB3E /* Quiz-Buzzer02-1.mp3 in Resources */,
 				45D6AA192758A40800F41F80 /* Assets.xcassets in Resources */,
 				45A9DE35273AA8820051DA7E /* HomeViewController.storyboard in Resources */,
 			);
