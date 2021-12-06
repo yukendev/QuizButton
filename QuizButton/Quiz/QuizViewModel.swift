@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import MultipeerConnectivity
+import AVFoundation
 
 
 class QuizViewModel: NSObject {
@@ -32,6 +33,8 @@ class QuizViewModel: NSObject {
     
     private let disposeBag = DisposeBag()
     
+    private var player: AVAudioPlayer?
+    
     private var canSendData: Bool = true
         
     private let isHiddenAnsweringViewRelay: BehaviorRelay<Bool> = BehaviorRelay(value: true)
@@ -54,6 +57,7 @@ class QuizViewModel: NSObject {
         // 解答ボタン
         input.quizButtonTap.emit(onNext: { _ in
             if self.canSendData {
+                self.quizSound()
                 let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber)
                 self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
                 self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
@@ -66,6 +70,17 @@ class QuizViewModel: NSObject {
                 self.dependency.wireframe.backToFirstScreen()
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func quizSound() {
+        if let soundURL = Bundle.main.url(forResource: "Quiz-Buzzer02-1", withExtension: "mp3") {
+            do {
+                player = try AVAudioPlayer(contentsOf: soundURL)
+                player?.play()
+            } catch {
+                print("error")
+            }
+        }
     }
 }
 
