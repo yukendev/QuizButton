@@ -35,7 +35,10 @@ class QuizViewModel: NSObject {
     
     private var player: AVAudioPlayer?
     
-    private var canSendData: Bool = true
+    private var isAnswering: Bool = false
+    
+    // どうしてもラグが発生するので、ほぼ同時に押した時の回答の優先順を決める数字
+    private var answerPower: Int = 0
         
     private let isHiddenAnsweringViewRelay: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let isHiddenAnsweringViewDriver: Driver<Bool>
@@ -56,12 +59,12 @@ class QuizViewModel: NSObject {
         
         // 解答ボタン
         input.quizButtonTap.emit(onNext: { _ in
-            if self.canSendData {
-                self.quizSound()
-                let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber)
-                self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
-                self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
-            }
+            self.isAnswering = true
+            self.answerPower = Int.random(in: 1000..<9999)
+            self.quizSound()
+            let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber, answerPower: self.answerPower)
+            self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
+            self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
         }).disposed(by: disposeBag)
         
         // 退出ボタン
@@ -117,13 +120,21 @@ extension QuizViewModel: MultiPeerConnectionDelegate {
             }
         case .quizStartAnswer:
             // 誰かがボタンを押した時
-            self.canSendData = false
+            if self.isAnswering {
+                // 複数人がほぼ同時にボタンを押して、複数人に回答画面が表示されているとき
+                if self.answerPower >= sessionData.answerPower {
+                    // 自分の回答
+                    return
+                } else {
+                    // 相手の回答
+                    self.isAnswering = false
+                }
+            }
             DispatchQueue.main.async {
                 self.dependency.wireframe.showAnsweringScreen(answeringType: .others, answeringView: self.answeringView)
             }
         case .quizFinishAnswer:
             // 誰かが解答を終了した時
-            self.canSendData = true
             DispatchQueue.main.async {
                 self.answeringView.removeFromSuperview()
             }
@@ -139,6 +150,7 @@ extension QuizViewModel: AnsweringViewDelegate {
         switch answeringType {
         case .answer:
             // 自分の解答終了
+            self.isAnswering = false
             let sessionData = SessionData(type: .quizFinishAnswer, roomNumber: self.UD.roomNumber)
             self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
             self.answeringView.removeFromSuperview()
