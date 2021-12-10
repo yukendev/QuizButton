@@ -7,8 +7,6 @@
 		<string>_QuizButton._tcp</string>
 		<string>_QuizButton._udp</string>
 	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>このAppで、使用中のネットワーク上のデバイスの検索および接続ができるようになります。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
