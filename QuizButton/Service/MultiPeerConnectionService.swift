@@ -72,6 +72,7 @@ extension MultiPeerConnectionService: MCSessionDelegate {
         delegate?.didChangeState(peerID: peerID, state: state)
     }
     
+    // データを受け取った後の処理
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         let decoder = JSONDecoder()
         do {
@@ -121,7 +122,7 @@ extension MultiPeerConnectionService: MCNearbyServiceBrowserDelegate {
 
 
 extension MultiPeerConnectionService {
-    
+    // データの送信
     func sendData(_ sessionData: SessionData, toPeer: [MCPeerID]? = nil) {
         let encoder = JSONEncoder()
         do {

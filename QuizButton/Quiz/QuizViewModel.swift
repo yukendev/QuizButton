@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import MultipeerConnectivity
+import AVFoundation
 
 
 class QuizViewModel: NSObject {
@@ -31,6 +32,13 @@ class QuizViewModel: NSObject {
     private let dependency: Dependency
     
     private let disposeBag = DisposeBag()
+    
+    private var player: AVAudioPlayer?
+    
+    private var isAnswering: Bool = false
+    
+    // どうしてもラグが発生するので、ほぼ同時に押した時の回答の優先順を決める数字
+    private var answerPower: Int = 0
         
     private let isHiddenAnsweringViewRelay: BehaviorRelay<Bool> = BehaviorRelay(value: true)
     let isHiddenAnsweringViewDriver: Driver<Bool>
@@ -51,28 +59,31 @@ class QuizViewModel: NSObject {
         
         // 解答ボタン
         input.quizButtonTap.emit(onNext: { _ in
-            // TODO: QuizButtonタップ処理
-            let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber)
+            self.isAnswering = true
+            self.answerPower = Int.random(in: 1000..<9999)
+            self.quizSound()
+            let sessionData = SessionData(type: .quizStartAnswer, roomNumber: self.UD.roomNumber, answerPower: self.answerPower)
             self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
             self.dependency.wireframe.showAnsweringScreen(answeringType: .answer, answeringView: self.answeringView)
         }).disposed(by: disposeBag)
         
         // 退出ボタン
         input.leaveButtonTap.emit(onNext: { _ in
-            switch self.dependency.multiPeerConnectionService.multiPeerType {
-            case .host:
-                self.dependency.alertWireframe.showDoubleAlert(title: "部屋を解散します。よろしいですか？", message: "") { _ in
-                    let sessionData = SessionData(type: .roomDeleted, roomNumber: self.UD.roomNumber)
-                    self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
-                    self.dependency.wireframe.backToFirstScreen()
-                }
-            case .guest:
-                self.dependency.alertWireframe.showDoubleAlert(title: "部屋を退出します。よろしいですか？", message: "") { _ in
-                    self.dependency.wireframe.backToFirstScreen()
-                }
+            self.dependency.alertWireframe.showDoubleAlert(title: "部屋を退出します。よろしいですか？", message: "") { _ in
+                self.dependency.wireframe.backToFirstScreen()
             }
-            self.dependency.wireframe.backToFirstScreen()
         }).disposed(by: disposeBag)
+    }
+    
+    private func quizSound() {
+        if let soundURL = Bundle.main.url(forResource: "Quiz-Buzzer02-1", withExtension: "mp3") {
+            do {
+                player = try AVAudioPlayer(contentsOf: soundURL)
+                player?.play()
+            } catch {
+                print("error")
+            }
+        }
     }
 }
 
@@ -109,6 +120,16 @@ extension QuizViewModel: MultiPeerConnectionDelegate {
             }
         case .quizStartAnswer:
             // 誰かがボタンを押した時
+            if self.isAnswering {
+                // 複数人がほぼ同時にボタンを押して、複数人に回答画面が表示されているとき
+                if self.answerPower >= sessionData.answerPower {
+                    // 自分の回答
+                    return
+                } else {
+                    // 相手の回答
+                    self.isAnswering = false
+                }
+            }
             DispatchQueue.main.async {
                 self.dependency.wireframe.showAnsweringScreen(answeringType: .others, answeringView: self.answeringView)
             }
@@ -129,6 +150,7 @@ extension QuizViewModel: AnsweringViewDelegate {
         switch answeringType {
         case .answer:
             // 自分の解答終了
+            self.isAnswering = false
             let sessionData = SessionData(type: .quizFinishAnswer, roomNumber: self.UD.roomNumber)
             self.dependency.multiPeerConnectionService.sendData(sessionData, toPeer: nil)
             self.answeringView.removeFromSuperview()
