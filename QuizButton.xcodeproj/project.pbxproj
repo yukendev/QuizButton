@@ -50,6 +50,7 @@
 		45DEB08C273AA69600361BDD /* QuizButtonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB08B273AA69600361BDD /* QuizButtonUITests.swift */; };
 		45DEB08E273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEB08D273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift */; };
 		45E41261274A3EC500348339 /* StandbyWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E41260274A3EC500348339 /* StandbyWireframe.swift */; };
+		45F64B242764439B0038D909 /* AdmobID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F64B232764439B0038D909 /* AdmobID.swift */; };
 		542C5AD582A1BF627180AA45 /* Pods_QuizButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453666EF274A4605002B7077 /* Pods_QuizButton.framework */; };
 		B38EF0A08C7681CE0E8D0262 /* Pods_QuizButton_QuizButtonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5479E3A993C534DB259BA021 /* Pods_QuizButton_QuizButtonUITests.framework */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		45DEB08B273AA69600361BDD /* QuizButtonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButtonUITests.swift; sourceTree = "<group>"; };
 		45DEB08D273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButtonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		45E41260274A3EC500348339 /* StandbyWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandbyWireframe.swift; sourceTree = "<group>"; };
+		45F64B232764439B0038D909 /* AdmobID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobID.swift; sourceTree = "<group>"; };
 		4763ACE522B61E9459BF8316 /* Pods-QuizButtonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButtonTests.debug.xcconfig"; path = "Target Support Files/Pods-QuizButtonTests/Pods-QuizButtonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5479E3A993C534DB259BA021 /* Pods_QuizButton_QuizButtonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizButton_QuizButtonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C5BE4E9C58DA4F5A9FA100 /* Pods-QuizButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizButton.debug.xcconfig"; path = "Target Support Files/Pods-QuizButton/Pods-QuizButton.debug.xcconfig"; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		45DEB069273AA69300361BDD /* QuizButton */ = {
 			isa = PBXGroup;
 			children = (
+				45F64B22276443800038D909 /* Config */,
 				4529487F275E43260084EB3E /* Sound */,
 				457C6EC3274FE0FA00A44C90 /* UI */,
 				459BD946274BD112001017D5 /* Logger */,
@@ -359,6 +362,14 @@
 				45DEB08D273AA69600361BDD /* QuizButtonUITestsLaunchTests.swift */,
 			);
 			path = QuizButtonUITests;
+			sourceTree = "<group>";
+		};
+		45F64B22276443800038D909 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				45F64B232764439B0038D909 /* AdmobID.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		49A630A0C559030052481E48 /* Frameworks */ = {
@@ -628,6 +639,7 @@
 				453AEA02273B5BBD0093951A /* EntranceViewModel.swift in Sources */,
 				45A9DE42273ABDF50051DA7E /* CreatingRoomViewController.swift in Sources */,
 				45C3E8EE27473A6D00FB9566 /* AlertWireframe.swift in Sources */,
+				45F64B242764439B0038D909 /* AdmobID.swift in Sources */,
 				45A9DE3B273AB3FB0051DA7E /* Wireframe.swift in Sources */,
 				45597B1F274A84A5003385C5 /* QuizViewController.swift in Sources */,
 				45E41261274A3EC500348339 /* StandbyWireframe.swift in Sources */,

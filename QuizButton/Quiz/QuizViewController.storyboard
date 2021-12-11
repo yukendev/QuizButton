@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNG-WC-f5B">
-                                <rect key="frame" x="302" y="52" width="96" height="34"/>
+                                <rect key="frame" x="300.5" y="52" width="97.5" height="35.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <attributedString key="attributedSubtitle">
                                         <fragment content="退出する">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="18" name=".HiraKakuInterface-W3"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 <integer key="NSUnderline" value="1"/>
                                             </attributes>
@@ -57,17 +57,28 @@
                                     <constraint firstAttribute="height" constant="240" id="ypA-97-ni9"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmB-Ma-SAO" customClass="GADBannerView">
+                                <rect key="frame" x="16" y="807" width="382" height="55"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QmB-Ma-SAO" secondAttribute="height" multiplier="382:55" id="GIl-tf-07E"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.92156862745098034" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QmB-Ma-SAO" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="694-pZ-PfK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QmB-Ma-SAO" secondAttribute="trailing" constant="16" id="7ND-Z8-Gxf"/>
                             <constraint firstItem="evI-JR-eCa" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="FDV-eH-Nq7"/>
                             <constraint firstItem="VNG-WC-f5B" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="PQi-r8-Ftj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="VNG-WC-f5B" secondAttribute="trailing" constant="16" id="hSl-PT-Kpd"/>
                             <constraint firstItem="evI-JR-eCa" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="hh2-Z7-6m1"/>
+                            <constraint firstItem="QmB-Ma-SAO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="tIh-RW-zE2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="QmB-Ma-SAO" id="C1m-Ik-ecn"/>
                         <outlet property="buttonOutsideView" destination="evI-JR-eCa" id="rL5-WM-pSE"/>
                         <outlet property="leaveButton" destination="VNG-WC-f5B" id="3mg-1F-h7c"/>
                         <outlet property="quizButton" destination="dHL-Oi-C1O" id="tfe-yd-WMU"/>

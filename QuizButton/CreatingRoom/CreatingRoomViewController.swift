@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import GoogleMobileAds
 
 class CreatingRoomViewController: UIViewController {
     
@@ -25,6 +26,9 @@ class CreatingRoomViewController: UIViewController {
             tableView.separatorStyle = .none
         }
     }
+    
+    @IBOutlet weak var bannerView: GADBannerView!
+    
         
     let disposeBag = DisposeBag()
     
@@ -34,6 +38,11 @@ class CreatingRoomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Admob設定
+        bannerView.adUnitID = AdmobID.bannerID
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
         
         // UserDefaultsに部屋番号を保存
         do {
