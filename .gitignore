@@ -89,4 +89,4 @@ fastlane/test_output
 iOSInjectionProject/
 
 # AdmobENV
-QuizButton/Config/AdmobID.swift
+/QuizButton/Config/AdmobID.swift
