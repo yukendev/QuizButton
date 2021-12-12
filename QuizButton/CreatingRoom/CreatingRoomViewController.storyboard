@@ -93,19 +93,30 @@
                                     <constraint firstItem="BRd-g3-QiO" firstAttribute="width" secondItem="cbY-YK-5qb" secondAttribute="width" id="dH0-xw-JqX"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tni-gj-BA4" customClass="GADBannerView">
+                                <rect key="frame" x="16" y="807" width="382" height="55"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Tni-gj-BA4" secondAttribute="height" multiplier="381:55" id="8Gq-sm-T58"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.92156862745098034" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Tni-gj-BA4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="58D-CE-k6q"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zgQ-tf-hMJ" secondAttribute="trailing" constant="24" id="GvM-zg-Uea"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cbY-YK-5qb" secondAttribute="trailing" constant="30" id="Un2-wW-nBo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Tni-gj-BA4" secondAttribute="trailing" constant="16" id="WBu-ef-lXs"/>
                             <constraint firstItem="zgQ-tf-hMJ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="-8" id="bOZ-JZ-mu2"/>
                             <constraint firstItem="cbY-YK-5qb" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ec3-Jz-vpw"/>
                             <constraint firstItem="cbY-YK-5qb" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="fOS-GV-hAp"/>
+                            <constraint firstItem="Tni-gj-BA4" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="oXt-6X-tZm"/>
                             <constraint firstItem="cbY-YK-5qb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="yfb-ml-xfN"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="Tni-gj-BA4" id="s7F-Ie-Wl2"/>
                         <outlet property="dissolveButton" destination="zgQ-tf-hMJ" id="Lax-DM-vU5"/>
                         <outlet property="quizStartButton" destination="p6B-F8-bnA" id="j98-Vt-2at"/>
                         <outlet property="roomNumberLabel" destination="bOR-dy-B4P" id="FS4-8w-vIh"/>

@@ -20,5 +20,6 @@ pod 'RxSwift', '6.2.0'
 pod 'RxCocoa', '6.2.0'
 pod 'Instantiate'
 pod 'InstantiateStandard'
+pod 'Google-Mobile-Ads-SDK'
 
 end
