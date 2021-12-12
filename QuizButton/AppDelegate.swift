@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // AdmobのADKを初期化
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         // アプリ起動時にUserDefaultを全てリセット
         let appDomain = Bundle.main.bundleIdentifier

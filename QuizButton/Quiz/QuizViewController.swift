@@ -9,6 +9,7 @@ import UIKit
 import Instantiate
 import InstantiateStandard
 import RxSwift
+import GoogleMobileAds
 
 
 extension QuizViewController: StoryboardInstantiatable {
@@ -28,6 +29,8 @@ class QuizViewController: UIViewController {
     
     @IBOutlet weak var buttonOutsideView: UIView!
     
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     private var viewModel: QuizViewModel!
     
     private var multiPeerConnectionService: MultiPeerConnectionService!
@@ -38,6 +41,10 @@ class QuizViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bannerView.adUnitID = AdmobID.bannerID
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
         
         self.buttonOutsideView.layer.cornerRadius = 120
         self.quizButton.layer.cornerRadius = 90
